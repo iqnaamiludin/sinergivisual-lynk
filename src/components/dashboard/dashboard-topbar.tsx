@@ -12,6 +12,7 @@ import {
   Check,
   Zap,
   Plus,
+  LogOut,
 } from "lucide-react";
 import Link from "next/link";
 
@@ -149,6 +150,20 @@ export function DashboardTopbar() {
             <Sparkles className="w-3.5 h-3.5" />
             <span>PRO Studio</span>
           </div>
+
+          {/* Logout Button */}
+          <button
+            onClick={() => {
+              if (confirm("Keluar dari dashboard Sinergi Visual Lynk?")) {
+                document.cookie = "sv_auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+                window.location.href = "/login";
+              }
+            }}
+            className="p-2 rounded-xl bg-zinc-900 hover:bg-rose-950/40 border border-zinc-800 hover:border-rose-500/30 text-zinc-400 hover:text-rose-400 transition"
+            title="Keluar Akun (Logout)"
+          >
+            <LogOut className="w-4 h-4" />
+          </button>
         </div>
       </header>
 

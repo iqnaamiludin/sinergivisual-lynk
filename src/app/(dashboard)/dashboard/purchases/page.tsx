@@ -1,29 +1,11 @@
 "use client";
 
 import React from "react";
-import { CreditCard, Download, FileArchive, CheckCircle2, Sparkles } from "lucide-react";
+import { CreditCard, Download, FileArchive, CheckCircle2, Sparkles, PackageOpen } from "lucide-react";
+import Link from "next/link";
 
 export default function PurchasesPage() {
-  const purchases = [
-    {
-      id: "PUR-102",
-      title: "Cinematic Hollywood LUTs Vol. 1",
-      creator: "Sinergi Visual",
-      date: "18 Ags 2026",
-      type: "ZIP • 45 MB",
-      license: "Commercial License",
-      downloadUrl: "https://drive.google.com/uc?export=download&id=cinematic-luts-vol1",
-    },
-    {
-      id: "PUR-101",
-      title: "Essential Video SFX Master Pack",
-      creator: "Sinergi Visual",
-      date: "15 Ags 2026",
-      type: "ZIP • 180 MB",
-      license: "Commercial License",
-      downloadUrl: "https://drive.google.com/uc?export=download&id=sfx-master-pack",
-    },
-  ];
+  const purchases: any[] = [];
 
   return (
     <div className="space-y-6 pb-12">
@@ -39,41 +21,65 @@ export default function PurchasesPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {purchases.map((p) => (
-          <div
-            key={p.id}
-            className="p-5 rounded-2xl bg-zinc-900/90 border border-zinc-800 flex flex-col justify-between space-y-4 hover:border-zinc-700 transition"
-          >
-            <div className="space-y-2">
-              <div className="flex items-center justify-between">
-                <span className="font-mono text-xs text-zinc-500">{p.id}</span>
-                <span className="px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-400 text-[10px] font-bold border border-emerald-500/30">
-                  {p.license}
-                </span>
-              </div>
-              <h3 className="text-sm font-bold text-white">{p.title}</h3>
-              <p className="text-xs text-zinc-400">Kreator: {p.creator} • Diklaim: {p.date}</p>
-              <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-zinc-950 text-[11px] font-mono text-zinc-300 border border-zinc-800">
-                <FileArchive className="w-3.5 h-3.5 text-indigo-400" />
-                <span>{p.type}</span>
-              </div>
-            </div>
-
-            <div className="pt-3 border-t border-zinc-800">
-              <a
-                href={p.downloadUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full py-2.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs flex items-center justify-center gap-2 transition"
-              >
-                <Download className="w-4 h-4" />
-                <span>Unduh Ulang Berkas Aset</span>
-              </a>
-            </div>
+      {purchases.length === 0 ? (
+        <div className="text-center py-16 px-6 rounded-2xl bg-zinc-900/50 border border-dashed border-zinc-800 space-y-3">
+          <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center mx-auto text-zinc-500">
+            <PackageOpen className="w-6 h-6" />
           </div>
-        ))}
-      </div>
+          <div>
+            <h4 className="text-sm font-bold text-white">Belum Ada Aset yang Diklaim</h4>
+            <p className="text-xs text-zinc-400 mt-1 max-w-sm mx-auto">
+              Seluruh lisensi aset digital dan produk video yang Anda unduh atau beli dari kreator akan tersimpan di halaman ini.
+            </p>
+          </div>
+          <Link
+            href="/sinergivisual"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 text-xs font-bold transition"
+          >
+            <span>Jelajahi Aset Kreator</span>
+          </Link>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {purchases.map((p) => (
+            <div
+              key={p.id}
+              className="p-5 rounded-2xl bg-zinc-900/90 border border-zinc-800 flex flex-col justify-between space-y-4 hover:border-zinc-700 transition"
+            >
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-xs text-zinc-500">{p.id}</span>
+                  <span className="px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-400 text-[10px] font-bold border border-emerald-500/30">
+                    {p.license}
+                  </span>
+                </div>
+                <h3 className="text-sm font-bold text-white">{p.title}</h3>
+                <p className="text-xs text-zinc-400">Kreator: {p.creator} • Diklaim: {p.date}</p>
+                <div className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg bg-zinc-950 text-[11px] font-mono text-zinc-300 border border-zinc-800">
+                  <FileArchive className="w-3.5 h-3.5 text-indigo-400" />
+                  <span>{p.type}</span>
+                </div>
+              </div>
+
+              <div className="pt-3 border-t border-zinc-800 flex items-center justify-between">
+                <span className="text-xs text-emerald-400 font-bold flex items-center gap-1">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>Lisensi Aktif</span>
+                </span>
+                <a
+                  href={p.downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-3.5 py-1.5 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 text-xs font-bold flex items-center gap-1.5 transition"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Unduh File</span>
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

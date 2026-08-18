@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { Users, Copy, Check, DollarSign, TrendingUp, Sparkles, ExternalLink } from "lucide-react";
+import { Users, Copy, Check, DollarSign, TrendingUp, Sparkles, ExternalLink, PackageOpen } from "lucide-react";
 import { useBuilderStore } from "@/stores/use-builder-store";
+import Link from "next/link";
 
 export default function AffiliatesPage() {
   const { profile } = useBuilderStore();
@@ -16,35 +17,7 @@ export default function AffiliatesPage() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const affiliateProducts = [
-    {
-      id: "aff-1",
-      name: "Cinematic Film LUTs Pack (Vol. 1)",
-      creator: "Sinergi Visual",
-      commission: "30%",
-      price: "Rp 249.000",
-      earned: "Rp 1.494.000",
-      sales: 20,
-    },
-    {
-      id: "aff-2",
-      name: "Essential Video SFX Master Pack",
-      creator: "Sinergi Visual",
-      commission: "25%",
-      price: "Rp 189.000",
-      earned: "Rp 708.750",
-      sales: 15,
-    },
-    {
-      id: "aff-3",
-      name: "DaVinci Colorist Masterclass",
-      creator: "Color Grade Studio",
-      commission: "20%",
-      price: "Rp 499.000",
-      earned: "Rp 998.000",
-      sales: 10,
-    },
-  ];
+  const affiliateProducts: any[] = [];
 
   return (
     <div className="space-y-6 pb-12">
@@ -60,90 +33,86 @@ export default function AffiliatesPage() {
         </div>
       </div>
 
-      {/* Referral Link Bar */}
-      <div className="p-5 rounded-2xl bg-zinc-900/90 border border-zinc-800 space-y-3">
-        <span className="text-xs font-bold text-white">Tautan Referral Afiliasi Anda:</span>
-        <div className="flex items-center gap-2 p-2 rounded-xl bg-zinc-950 border border-zinc-800">
-          <input
-            type="text"
-            readOnly
-            value={affiliateLink}
-            className="flex-1 bg-transparent text-xs text-emerald-400 font-mono focus:outline-none px-2 select-all"
-          />
+      {/* Referral Link Box */}
+      <div className="p-6 rounded-3xl bg-gradient-to-r from-zinc-900 to-zinc-950 border border-zinc-800 space-y-3">
+        <div className="flex items-center justify-between">
+          <span className="text-xs font-bold text-white">Tautan Referral Afiliasi Anda:</span>
+          <span className="text-[10px] px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 font-bold border border-emerald-500/30">
+            Komisi Aktif
+          </span>
+        </div>
+
+        <div className="p-3 bg-zinc-950 rounded-2xl border border-zinc-800 flex items-center justify-between gap-3">
+          <span className="font-mono text-xs text-zinc-300 truncate">{affiliateLink}</span>
           <button
             onClick={handleCopy}
-            className="px-4 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs flex items-center gap-1.5 transition cursor-pointer"
+            className="px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 font-bold text-xs flex items-center gap-1.5 transition shrink-0 cursor-pointer"
           >
-            {copied ? (
-              <>
-                <Check className="w-3.5 h-3.5" />
-                <span>Tersalin</span>
-              </>
-            ) : (
-              <>
-                <Copy className="w-3.5 h-3.5" />
-                <span>Salin Link</span>
-              </>
-            )}
+            {copied ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+            <span>{copied ? "Tersalin" : "Salin Link"}</span>
           </button>
         </div>
       </div>
 
-      {/* 3 Metric Cards */}
+      {/* Metrics Row */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="p-4 rounded-2xl bg-zinc-900/80 border border-zinc-800">
-          <span className="text-xs text-zinc-400 font-semibold">Total Komisi Afiliasi</span>
-          <p className="text-2xl font-black text-emerald-400 mt-1">Rp 3.200.750</p>
-          <span className="text-[11px] text-zinc-500">Saldo siap ditarik (Payout)</span>
+        <div className="p-5 rounded-2xl bg-zinc-900/80 border border-zinc-800">
+          <span className="text-xs font-semibold text-zinc-400">Total Komisi Didapat</span>
+          <p className="text-2xl font-black text-white mt-1">Rp 0</p>
+          <span className="text-[11px] text-zinc-500 mt-0.5 block">0 Referral aktif</span>
         </div>
-        <div className="p-4 rounded-2xl bg-zinc-900/80 border border-zinc-800">
-          <span className="text-xs text-zinc-400 font-semibold">Total Penjualan Afiliasi</span>
-          <p className="text-2xl font-black text-white mt-1">45 Produk</p>
-          <span className="text-[11px] text-emerald-400 font-semibold">+12 pesanan minggu ini</span>
+
+        <div className="p-5 rounded-2xl bg-zinc-900/80 border border-zinc-800">
+          <span className="text-xs font-semibold text-zinc-400">Produk Dipromosikan</span>
+          <p className="text-2xl font-black text-emerald-400 mt-1">0</p>
+          <span className="text-[11px] text-zinc-500 mt-0.5 block">Aset kemitraan</span>
         </div>
-        <div className="p-4 rounded-2xl bg-zinc-900/80 border border-zinc-800">
-          <span className="text-xs text-zinc-400 font-semibold">Mitra Kreatif Aktif</span>
-          <p className="text-2xl font-black text-indigo-400 mt-1">8 Creator</p>
-          <span className="text-[11px] text-indigo-300">Kolaborasi studio</span>
+
+        <div className="p-5 rounded-2xl bg-zinc-900/80 border border-zinc-800">
+          <span className="text-xs font-semibold text-zinc-400">Total Klik Link</span>
+          <p className="text-2xl font-black text-indigo-400 mt-1">0</p>
+          <span className="text-[11px] text-zinc-500 mt-0.5 block">Kunjungan referral</span>
         </div>
       </div>
 
       {/* Affiliate Products Table */}
-      <div className="p-6 rounded-2xl bg-zinc-900/90 border border-zinc-800 space-y-4">
-        <h3 className="text-base font-bold text-white">Katalog Produk Afiliasi</h3>
-        <div className="overflow-x-auto">
+      <div className="rounded-2xl bg-zinc-900/90 border border-zinc-800 overflow-hidden">
+        <div className="p-4 border-b border-zinc-800 flex items-center justify-between">
+          <h3 className="text-sm font-bold text-white">Produk Afiliasi Aktif</h3>
+        </div>
+
+        {affiliateProducts.length === 0 ? (
+          <div className="p-12 text-center text-zinc-500 space-y-2">
+            <PackageOpen className="w-8 h-8 text-zinc-600 mx-auto" />
+            <p className="text-sm font-bold text-white">Belum Ada Produk Afiliasi</p>
+            <p className="text-xs text-zinc-400 max-w-sm mx-auto">
+              Bagikan tautan referral Anda kepada sesama kreator untuk mulai mendapatkan komisi passive income.
+            </p>
+          </div>
+        ) : (
           <table className="w-full text-left text-xs">
             <thead>
-              <tr className="border-b border-zinc-800 text-zinc-500">
-                <th className="pb-3 font-semibold">Nama Produk</th>
-                <th className="pb-3 font-semibold">Kreator</th>
-                <th className="pb-3 font-semibold">Harga</th>
-                <th className="pb-3 font-semibold">Komisi (%)</th>
-                <th className="pb-3 font-semibold">Total Didapat</th>
-                <th className="pb-3 font-semibold text-right">Aksi</th>
+              <tr className="bg-zinc-950 border-b border-zinc-800 text-zinc-400">
+                <th className="p-4">Nama Produk</th>
+                <th className="p-4">Komisi</th>
+                <th className="p-4">Harga Jual</th>
+                <th className="p-4">Terjual</th>
+                <th className="p-4 text-right">Pendapatan</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-zinc-800/60">
               {affiliateProducts.map((p) => (
-                <tr key={p.id} className="hover:bg-zinc-800/30">
-                  <td className="py-3.5 font-bold text-white">{p.name}</td>
-                  <td className="py-3.5 text-zinc-400">{p.creator}</td>
-                  <td className="py-3.5 text-zinc-300 font-semibold">{p.price}</td>
-                  <td className="py-3.5 font-bold text-emerald-400">{p.commission}</td>
-                  <td className="py-3.5 font-mono font-bold text-white">{p.earned}</td>
-                  <td className="py-3.5 text-right">
-                    <button
-                      onClick={() => alert(`Link affiliasi untuk ${p.name} disalin!`)}
-                      className="px-3 py-1 rounded-lg bg-zinc-800 hover:bg-emerald-500 hover:text-zinc-950 text-zinc-300 text-xs font-semibold transition"
-                    >
-                      Dapatkan Link
-                    </button>
-                  </td>
+                <tr key={p.id} className="hover:bg-zinc-800/40 transition">
+                  <td className="p-4 font-bold text-white">{p.name}</td>
+                  <td className="p-4 text-emerald-400 font-bold">{p.commission}</td>
+                  <td className="p-4">{p.price}</td>
+                  <td className="p-4">{p.sales} unit</td>
+                  <td className="p-4 text-right font-black text-white">{p.earned}</td>
                 </tr>
               ))}
             </tbody>
           </table>
-        </div>
+        )}
       </div>
     </div>
   );

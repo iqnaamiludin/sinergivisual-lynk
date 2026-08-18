@@ -236,13 +236,14 @@ export function DashboardSidebar() {
         <button
           onClick={() => {
             if (confirm("Keluar dari dashboard Sinergi Visual Lynk?")) {
-              window.location.href = "/";
+              document.cookie = "sv_auth_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT;";
+              window.location.href = "/login";
             }
           }}
-          className="w-full py-2 px-3 rounded-xl hover:bg-rose-950/40 text-zinc-400 hover:text-rose-400 border border-transparent hover:border-rose-500/20 text-xs font-semibold flex items-center justify-center gap-2 transition"
+          className="w-full py-2 px-3 rounded-xl hover:bg-rose-950/40 text-zinc-400 hover:text-rose-400 border border-transparent hover:border-rose-500/20 text-xs font-semibold flex items-center justify-center gap-2 transition cursor-pointer"
         >
           <LogOut className="w-4 h-4" />
-          <span>Keluar Akun</span>
+          <span>Keluar Akun (Logout)</span>
         </button>
       </div>
     </div>

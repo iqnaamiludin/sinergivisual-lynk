@@ -30,38 +30,7 @@ export function VouchersPage() {
   const [copiedCode, setCopiedCode] = useState<string | null>(null);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
 
-  const [vouchers, setVouchers] = useState<Voucher[]>([
-    {
-      id: "v-1",
-      code: "SINERGI50",
-      type: "percentage",
-      amount: 50,
-      quota: 100,
-      used: 64,
-      validUntil: "31 Des 2026",
-      active: true,
-    },
-    {
-      id: "v-2",
-      code: "CREATIVE100",
-      type: "fixed",
-      amount: 100000,
-      quota: 50,
-      used: 32,
-      validUntil: "30 Nov 2026",
-      active: true,
-    },
-    {
-      id: "v-3",
-      code: "LAUNCHVIP",
-      type: "percentage",
-      amount: 100,
-      quota: 20,
-      used: 20,
-      validUntil: "31 Ags 2026",
-      active: false,
-    },
-  ]);
+  const [vouchers, setVouchers] = useState<Voucher[]>([]);
 
   // New voucher form state
   const [newCode, setNewCode] = useState("");
@@ -134,8 +103,28 @@ export function VouchersPage() {
       </div>
 
       {/* Voucher Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {vouchers.map((v) => (
+      {vouchers.length === 0 ? (
+        <div className="text-center py-14 px-6 rounded-2xl bg-zinc-900/50 border border-dashed border-zinc-800 space-y-3">
+          <div className="w-12 h-12 rounded-full bg-emerald-950/60 border border-emerald-500/30 flex items-center justify-center mx-auto text-emerald-400">
+            <Ticket className="w-6 h-6" />
+          </div>
+          <div>
+            <h4 className="text-sm font-bold text-white">Belum Ada Voucher Diskon</h4>
+            <p className="text-xs text-zinc-400 mt-1 max-w-sm mx-auto">
+              Buat kode kupon diskon (potongan persentase atau nominal rupiah) untuk meningkatkan konversi penjualan produk digital Anda.
+            </p>
+          </div>
+          <button
+            onClick={() => setIsCreateModalOpen(true)}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 text-xs font-bold transition cursor-pointer"
+          >
+            <Plus className="w-4 h-4" />
+            <span>Buat Voucher Pertama</span>
+          </button>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          {vouchers.map((v) => (
           <div
             key={v.id}
             className={`p-5 rounded-2xl bg-zinc-900/90 border transition flex flex-col justify-between space-y-4 ${
@@ -231,6 +220,7 @@ export function VouchersPage() {
           </div>
         ))}
       </div>
+      )}
 
       {/* Create Voucher Modal */}
       {isCreateModalOpen && (

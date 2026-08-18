@@ -27,6 +27,7 @@ import {
   Video,
   ShieldCheck,
   Zap,
+  PackageOpen,
 } from "lucide-react";
 
 export default function DashboardHomePage() {
@@ -47,6 +48,7 @@ export default function DashboardHomePage() {
   };
 
   const activeBlocksCount = blocks.filter((b) => b.active).length;
+  const totalClicks = blocks.reduce((sum, b) => sum + (b.clicks || 0), 0);
 
   const quickCreateItems = [
     {
@@ -86,47 +88,11 @@ export default function DashboardHomePage() {
     },
   ];
 
-  const recentOrders = [
-    {
-      id: "ORD-8942",
-      buyer: "Rian Pratama",
-      email: "rian.visual@gmail.com",
-      product: "Cinematic Film LUTs Pack (Vol. 1)",
-      price: "FREE",
-      date: "18 Ags 2026, 13:20",
-      status: "Success",
-    },
-    {
-      id: "ORD-8941",
-      buyer: "Studio Karya Visual",
-      email: "production@karyavisual.id",
-      product: "Essential Video Sound FX Master Pack",
-      price: "FREE",
-      date: "18 Ags 2026, 12:45",
-      status: "Success",
-    },
-    {
-      id: "ORD-8940",
-      buyer: "Dimas Anggara",
-      email: "dimas.motion@yahoo.com",
-      product: "Premiere Pro Minimal Lower Thirds",
-      price: "FREE",
-      date: "18 Ags 2026, 11:15",
-      status: "Success",
-    },
-    {
-      id: "ORD-8939",
-      buyer: "Nadia Creative",
-      email: "nadia@agency.com",
-      product: "Commercial Video Preset Pack",
-      price: "Rp 149.000",
-      date: "18 Ags 2026, 09:30",
-      status: "Success",
-    },
-  ];
+  // Clean empty state for fresh production install
+  const recentOrders: any[] = [];
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="space-y-8">
       {/* 1. HEADER AKUN & EARNINGS ROW */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         {/* Left: Profil Card (7 Cols) */}
@@ -169,7 +135,7 @@ export default function DashboardHomePage() {
               {/* Share Button */}
               <button
                 onClick={() => setIsShareOpen(true)}
-                className="p-2.5 rounded-xl bg-zinc-950 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-white transition shadow-sm"
+                className="p-2.5 rounded-xl bg-zinc-950 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-white transition shadow-sm cursor-pointer"
                 title="Bagikan Halaman Bio"
               >
                 <Share2 className="w-4 h-4" />
@@ -193,7 +159,7 @@ export default function DashboardHomePage() {
               <div className="flex items-center gap-1.5 shrink-0">
                 <button
                   onClick={handleCopy}
-                  className="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-xs font-semibold flex items-center gap-1.5 transition"
+                  className="px-3 py-1.5 rounded-xl bg-zinc-900 hover:bg-zinc-800 text-zinc-300 text-xs font-semibold flex items-center gap-1.5 transition cursor-pointer"
                 >
                   {copied ? (
                     <>
@@ -222,7 +188,7 @@ export default function DashboardHomePage() {
           </div>
 
           <div className="mt-5 pt-4 border-t border-zinc-800/80 flex items-center justify-between text-xs text-zinc-400">
-            <span>Paket: <strong className="text-white">PRO Creator Unlimited</strong></span>
+            <span>Paket: <strong className="text-white">PRO Creator Studio</strong></span>
             <Link
               href="/dashboard/builder"
               className="text-emerald-400 hover:text-emerald-300 font-bold flex items-center gap-1 transition"
@@ -249,7 +215,7 @@ export default function DashboardHomePage() {
               {/* Eye toggle sensor */}
               <button
                 onClick={() => setShowEarnings(!showEarnings)}
-                className="p-1.5 rounded-lg bg-zinc-800/80 text-zinc-400 hover:text-white transition"
+                className="p-1.5 rounded-lg bg-zinc-800/80 text-zinc-400 hover:text-white transition cursor-pointer"
                 title={showEarnings ? "Sembunyikan Saldo" : "Tampilkan Saldo"}
               >
                 {showEarnings ? (
@@ -263,11 +229,11 @@ export default function DashboardHomePage() {
             {/* Big Balance Amount */}
             <div className="mt-4">
               <span className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                {showEarnings ? "Rp 14.850.000" : "••••••••••••"}
+                {showEarnings ? "Rp 0" : "••••••••••••"}
               </span>
-              <div className="flex items-center gap-1.5 mt-1 text-xs text-emerald-400 font-semibold">
-                <TrendingUp className="w-3.5 h-3.5" />
-                <span>+22.5% dari bulan sebelumnya</span>
+              <div className="flex items-center gap-1.5 mt-1 text-xs text-zinc-500 font-semibold">
+                <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+                <span>Siap menerima transaksi penjualan aset</span>
               </div>
             </div>
           </div>
@@ -287,7 +253,7 @@ export default function DashboardHomePage() {
                 navigator.clipboard.writeText(`https://pay.lynk.id/${profile.username}`);
                 alert(`PayMe link disalin: https://pay.lynk.id/${profile.username}`);
               }}
-              className="py-2.5 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 text-xs font-bold flex items-center justify-center gap-1.5 transition"
+              className="py-2.5 px-3 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 text-xs font-bold flex items-center justify-center gap-1.5 transition cursor-pointer"
             >
               <Zap className="w-3.5 h-3.5 fill-current" />
               <span>Salin PayMe</span>
@@ -306,8 +272,8 @@ export default function DashboardHomePage() {
               <DollarSign className="w-4 h-4" />
             </div>
           </div>
-          <span className="text-xl font-black text-white">Rp 28.450.000</span>
-          <p className="text-[11px] text-emerald-400 mt-1 font-semibold">+18.4% growth</p>
+          <span className="text-xl font-black text-white">Rp 0</span>
+          <p className="text-[11px] text-zinc-500 mt-1 font-semibold">0 Total transaksi</p>
         </div>
 
         {/* Metric 2 */}
@@ -325,13 +291,13 @@ export default function DashboardHomePage() {
         {/* Metric 3 */}
         <div className="p-5 rounded-2xl bg-zinc-900/80 border border-zinc-800 hover:border-zinc-700 transition">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs text-zinc-400 font-semibold">Affiliate Products</span>
+            <span className="text-xs text-zinc-400 font-semibold">Total Clicks</span>
             <div className="p-2 rounded-xl bg-purple-950/60 border border-purple-500/20 text-purple-400">
               <Users className="w-4 h-4" />
             </div>
           </div>
-          <span className="text-xl font-black text-white">5 Produk</span>
-          <p className="text-[11px] text-purple-400 mt-1 font-semibold">Komisi 15% - 30%</p>
+          <span className="text-xl font-black text-white">{totalClicks}</span>
+          <p className="text-[11px] text-purple-400 mt-1 font-semibold">Klik tautan link</p>
         </div>
 
         {/* Metric 4 */}
@@ -342,8 +308,8 @@ export default function DashboardHomePage() {
               <ShoppingBag className="w-4 h-4" />
             </div>
           </div>
-          <span className="text-xl font-black text-white">142 Pesanan</span>
-          <p className="text-[11px] text-emerald-400 mt-1 font-semibold">98.2% klaim sukses</p>
+          <span className="text-xl font-black text-white">0 Pesanan</span>
+          <p className="text-[11px] text-zinc-500 mt-1 font-semibold">0 Klaim aset</p>
         </div>
       </div>
 
@@ -388,7 +354,7 @@ export default function DashboardHomePage() {
       {/* 4. INTERACTIVE VIEWS & CLICKS CHART */}
       <DashboardChart />
 
-      {/* 5. RECENT ORDERS TABLE */}
+      {/* 5. RECENT ORDERS TABLE (WITH CLEAN EMPTY STATE) */}
       <div className="p-6 rounded-2xl bg-zinc-900/90 border border-zinc-800 space-y-4">
         <div className="flex items-center justify-between">
           <div>
@@ -409,40 +375,27 @@ export default function DashboardHomePage() {
           </Link>
         </div>
 
-        {/* Orders Table */}
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs">
-            <thead>
-              <tr className="border-b border-zinc-800 text-zinc-500">
-                <th className="pb-3 font-semibold">ID Pesanan</th>
-                <th className="pb-3 font-semibold">Pembeli</th>
-                <th className="pb-3 font-semibold">Aset / Produk</th>
-                <th className="pb-3 font-semibold">Waktu</th>
-                <th className="pb-3 font-semibold">Total</th>
-                <th className="pb-3 font-semibold text-right">Status</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-800/60">
-              {recentOrders.map((ord) => (
-                <tr key={ord.id} className="hover:bg-zinc-800/30 transition">
-                  <td className="py-3.5 font-mono text-zinc-400">{ord.id}</td>
-                  <td className="py-3.5">
-                    <p className="font-bold text-white">{ord.buyer}</p>
-                    <p className="text-[11px] text-zinc-500">{ord.email}</p>
-                  </td>
-                  <td className="py-3.5 text-zinc-300 font-medium">{ord.product}</td>
-                  <td className="py-3.5 text-zinc-500">{ord.date}</td>
-                  <td className="py-3.5 font-bold text-white">{ord.price}</td>
-                  <td className="py-3.5 text-right">
-                    <span className="px-2.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/30 text-[10px] font-bold text-emerald-400">
-                      {ord.status}
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+        {/* Empty State */}
+        {recentOrders.length === 0 ? (
+          <div className="text-center py-12 px-4 rounded-xl bg-zinc-950/60 border border-dashed border-zinc-800/80 space-y-3">
+            <div className="w-12 h-12 rounded-full bg-zinc-900 border border-zinc-800 flex items-center justify-center mx-auto text-zinc-500">
+              <PackageOpen className="w-6 h-6" />
+            </div>
+            <div>
+              <h4 className="text-sm font-bold text-white">Belum Ada Pesanan Masuk</h4>
+              <p className="text-xs text-zinc-400 mt-1 max-w-sm mx-auto">
+                Setelah membagikan link bio Anda, setiap transaksi produk digital dan unduhan aset akan tercatat di sini secara otomatis.
+              </p>
+            </div>
+            <Link
+              href="/dashboard/builder"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl bg-emerald-500 hover:bg-emerald-400 text-zinc-950 text-xs font-bold transition"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Tambah Produk ke Bio</span>
+            </Link>
+          </div>
+        ) : null}
       </div>
 
       {/* Share Modal */}

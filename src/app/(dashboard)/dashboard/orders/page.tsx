@@ -11,80 +11,15 @@ import {
   ArrowUpRight,
   Receipt,
   FileSpreadsheet,
+  PackageOpen,
 } from "lucide-react";
+import Link from "next/link";
 
 export default function OrdersPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState<"all" | "success" | "pending">("all");
 
-  const ordersData = [
-    {
-      id: "ORD-8942",
-      buyer: "Rian Pratama",
-      email: "rian.visual@gmail.com",
-      phone: "+62 812-9876-5432",
-      product: "Cinematic Film LUTs Pack (Vol. 1)",
-      price: "FREE",
-      paymentMethod: "Direct Claim (Rp 0)",
-      date: "18 Ags 2026, 13:20",
-      status: "Success",
-    },
-    {
-      id: "ORD-8941",
-      buyer: "Studio Karya Visual",
-      email: "production@karyavisual.id",
-      phone: "+62 813-1122-3344",
-      product: "Essential Video Sound FX Master Pack",
-      price: "FREE",
-      paymentMethod: "Direct Claim (Rp 0)",
-      date: "18 Ags 2026, 12:45",
-      status: "Success",
-    },
-    {
-      id: "ORD-8940",
-      buyer: "Dimas Anggara",
-      email: "dimas.motion@yahoo.com",
-      phone: "+62 856-7890-1234",
-      product: "Premiere Pro Minimal Lower Thirds",
-      price: "FREE",
-      paymentMethod: "Direct Claim (Rp 0)",
-      date: "18 Ags 2026, 11:15",
-      status: "Success",
-    },
-    {
-      id: "ORD-8939",
-      buyer: "Nadia Creative Studio",
-      email: "nadia@agency.com",
-      phone: "+62 819-5566-7788",
-      product: "Commercial Video 4K Transitions Pack",
-      price: "Rp 149.000",
-      paymentMethod: "QRIS / GoPay",
-      date: "18 Ags 2026, 09:30",
-      status: "Success",
-    },
-    {
-      id: "ORD-8938",
-      buyer: "Budi Santoso",
-      email: "budi.editor@gmail.com",
-      phone: "+62 877-3344-5566",
-      product: "DaVinci Resolve Color Grading Mastery",
-      price: "Rp 249.000",
-      paymentMethod: "BCA Virtual Account",
-      date: "17 Ags 2026, 21:05",
-      status: "Success",
-    },
-    {
-      id: "ORD-8937",
-      buyer: "Fajar Nugraha",
-      email: "fajar@visualart.co",
-      phone: "+62 811-2233-4455",
-      product: "3D Motion Graphic After Effects Pack",
-      price: "Rp 189.000",
-      paymentMethod: "Mandiri VA",
-      date: "17 Ags 2026, 16:40",
-      status: "Pending",
-    },
-  ];
+  const ordersData: any[] = [];
 
   const filteredOrders = ordersData.filter((ord) => {
     const matchesSearch =
@@ -101,52 +36,54 @@ export default function OrdersPage() {
   });
 
   return (
-    <div className="space-y-6 pb-12">
-      {/* Header */}
+    <div className="space-y-6">
+      {/* Header Bar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <div className="p-2 rounded-xl bg-emerald-950/80 border border-emerald-500/30 text-emerald-400">
               <ShoppingBag className="w-5 h-5" />
             </div>
-            <div>
-              <h1 className="text-xl font-black text-white">Riwayat Pesanan (Orders)</h1>
-              <p className="text-xs text-zinc-400 mt-0.5">
-                Kelola transaksi pembeli, klaim aset gratis, dan data pemesanan klien
-              </p>
-            </div>
+            <h1 className="text-xl font-black text-white tracking-tight">
+              Manajemen Pesanan & Transaksi
+            </h1>
           </div>
+          <p className="text-xs text-zinc-400 mt-1">
+            Pantau dan kelola seluruh riwayat klaim aset digital gratis maupun berbayar.
+          </p>
         </div>
 
         <button
-          onClick={() => alert("Mengekspor data riwayat transaksi ke format CSV...")}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-200 hover:text-white text-xs font-bold transition self-start sm:self-auto cursor-pointer"
+          onClick={() => alert("Mengekspor data pesanan ke file .CSV...")}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-white text-xs font-bold transition self-start sm:self-auto cursor-pointer"
         >
           <FileSpreadsheet className="w-4 h-4 text-emerald-400" />
-          <span>Export CSV</span>
+          <span>Export ke CSV</span>
         </button>
       </div>
 
-      {/* 3 Summary Stats */}
+      {/* 3 Metrics Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div className="p-4 rounded-2xl bg-zinc-900/80 border border-zinc-800">
-          <span className="text-xs text-zinc-400 font-semibold">Total Transaksi</span>
-          <p className="text-2xl font-black text-white mt-1">142 Pesanan</p>
-          <span className="text-[11px] text-emerald-400 font-semibold">98.5% Sukses</span>
+        <div className="p-5 rounded-2xl bg-zinc-900/80 border border-zinc-800">
+          <span className="text-xs font-semibold text-zinc-400">Total Transaksi</span>
+          <p className="text-2xl font-black text-white mt-1">Rp 0</p>
+          <span className="text-[11px] text-zinc-500 mt-0.5 block">0 Order selesai</span>
         </div>
-        <div className="p-4 rounded-2xl bg-zinc-900/80 border border-zinc-800">
-          <span className="text-xs text-zinc-400 font-semibold">Total Omset Penjualan</span>
-          <p className="text-2xl font-black text-emerald-400 mt-1">Rp 28.450.000</p>
-          <span className="text-[11px] text-zinc-500 font-semibold">Termasuk produk berbayar</span>
+
+        <div className="p-5 rounded-2xl bg-zinc-900/80 border border-zinc-800">
+          <span className="text-xs font-semibold text-zinc-400">Klaim Berhasil</span>
+          <p className="text-2xl font-black text-emerald-400 mt-1">0</p>
+          <span className="text-[11px] text-zinc-500 mt-0.5 block">100% Rasio sukses</span>
         </div>
-        <div className="p-4 rounded-2xl bg-zinc-900/80 border border-zinc-800">
-          <span className="text-xs text-zinc-400 font-semibold">Klaim Aset Gratis (Leads)</span>
-          <p className="text-2xl font-black text-indigo-400 mt-1">118 Unduhan</p>
-          <span className="text-[11px] text-indigo-300 font-semibold">Calon klien potensial</span>
+
+        <div className="p-5 rounded-2xl bg-zinc-900/80 border border-zinc-800">
+          <span className="text-xs font-semibold text-zinc-400">Menunggu Pembayaran</span>
+          <p className="text-2xl font-black text-amber-400 mt-1">0</p>
+          <span className="text-[11px] text-zinc-500 mt-0.5 block">0 Pending</span>
         </div>
       </div>
 
-      {/* Search & Filter Bar */}
+      {/* Filter & Search Bar */}
       <div className="p-4 rounded-2xl bg-zinc-900/90 border border-zinc-800 flex flex-col sm:flex-row items-center justify-between gap-3">
         {/* Search */}
         <div className="relative w-full sm:w-80">
@@ -201,8 +138,14 @@ export default function OrdersPage() {
             <tbody className="divide-y divide-zinc-800/60">
               {filteredOrders.length === 0 ? (
                 <tr>
-                  <td colSpan={8} className="p-8 text-center text-zinc-500">
-                    Tidak ditemukan data pesanan yang sesuai dengan filter.
+                  <td colSpan={8} className="p-12 text-center text-zinc-500">
+                    <div className="max-w-xs mx-auto space-y-2">
+                      <PackageOpen className="w-8 h-8 text-zinc-600 mx-auto" />
+                      <p className="text-sm font-bold text-white">Belum Ada Pesanan</p>
+                      <p className="text-xs text-zinc-500">
+                        Ketika pembeli mengunduh atau membeli produk dari halaman bio Anda, rinciannya akan muncul di sini.
+                      </p>
+                    </div>
                   </td>
                 </tr>
               ) : (
@@ -245,10 +188,10 @@ export default function OrdersPage() {
                         onClick={() =>
                           alert(`Detail Invoice ${ord.id} untuk ${ord.buyer}`)
                         }
-                        className="p-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition"
+                        className="p-2 rounded-lg bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white transition cursor-pointer"
                         title="Lihat Invoice"
                       >
-                        <Receipt className="w-3.5 h-3.5" />
+                        <Receipt className="w-4 h-4" />
                       </button>
                     </td>
                   </tr>
