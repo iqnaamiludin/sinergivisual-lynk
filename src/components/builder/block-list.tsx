@@ -61,10 +61,8 @@ export function BlockList() {
     }
   };
 
-  const filteredBlocks = blocks.filter(
-    (b) =>
-      b.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (b.subtitle && b.subtitle.toLowerCase().includes(searchQuery.toLowerCase()))
+  const filteredBlocks = blocks.filter((b) =>
+    b.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -83,30 +81,30 @@ export function BlockList() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
           <button
             onClick={() => addBlock("link")}
-            className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-emerald-500/40 text-xs font-semibold text-zinc-300 hover:text-emerald-400 transition"
+            className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white hover:bg-slate-50 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-slate-200 dark:border-zinc-800 hover:border-emerald-300 dark:hover:border-emerald-500/40 text-xs font-semibold text-slate-700 hover:text-emerald-600 dark:text-zinc-300 dark:hover:text-emerald-400 shadow-sm transition cursor-pointer"
           >
-            <Link2 className="w-3.5 h-3.5 text-emerald-400" />
+            <Link2 className="w-3.5 h-3.5 text-emerald-500 dark:text-emerald-400" />
             <span>+ Link</span>
           </button>
           <button
             onClick={() => addBlock("product")}
-            className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-indigo-500/40 text-xs font-semibold text-zinc-300 hover:text-indigo-400 transition"
+            className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white hover:bg-slate-50 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-slate-200 dark:border-zinc-800 hover:border-indigo-300 dark:hover:border-indigo-500/40 text-xs font-semibold text-slate-700 hover:text-indigo-600 dark:text-zinc-300 dark:hover:text-indigo-400 shadow-sm transition cursor-pointer"
           >
-            <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+            <Sparkles className="w-3.5 h-3.5 text-indigo-500 dark:text-indigo-400" />
             <span>+ Produk</span>
           </button>
           <button
             onClick={() => addBlock("video")}
-            className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-rose-500/40 text-xs font-semibold text-zinc-300 hover:text-rose-400 transition"
+            className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white hover:bg-slate-50 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-slate-200 dark:border-zinc-800 hover:border-rose-300 dark:hover:border-rose-500/40 text-xs font-semibold text-slate-700 hover:text-rose-600 dark:text-zinc-300 dark:hover:text-rose-400 shadow-sm transition cursor-pointer"
           >
-            <PlayCircle className="w-3.5 h-3.5 text-rose-400" />
+            <PlayCircle className="w-3.5 h-3.5 text-rose-500 dark:text-rose-400" />
             <span>+ Video</span>
           </button>
           <button
             onClick={() => addBlock("header")}
-            className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 hover:border-amber-500/40 text-xs font-semibold text-zinc-300 hover:text-amber-400 transition"
+            className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl bg-white hover:bg-slate-50 dark:bg-zinc-900 dark:hover:bg-zinc-800 border border-slate-200 dark:border-zinc-800 hover:border-amber-300 dark:hover:border-amber-500/40 text-xs font-semibold text-slate-700 hover:text-amber-600 dark:text-zinc-300 dark:hover:text-amber-400 shadow-sm transition cursor-pointer"
           >
-            <Heading className="w-3.5 h-3.5 text-amber-400" />
+            <Heading className="w-3.5 h-3.5 text-amber-500 dark:text-amber-400" />
             <span>+ Header</span>
           </button>
         </div>
@@ -115,19 +113,19 @@ export function BlockList() {
       {/* Header Info & Search Filter */}
       <div className="flex items-center justify-between gap-3 pt-2">
         <div className="flex items-center gap-2">
-          <Layers className="w-4 h-4 text-emerald-400" />
-          <h3 className="text-sm font-bold text-white">Daftar Blok ({blocks.length})</h3>
+          <Layers className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white">Daftar Blok ({blocks.length})</h3>
         </div>
 
         {blocks.length > 3 && (
           <div className="relative w-48">
-            <Search className="w-3.5 h-3.5 text-zinc-500 absolute left-2.5 top-1/2 -translate-y-1/2" />
+            <Search className="w-3.5 h-3.5 text-slate-400 dark:text-zinc-500 absolute left-2.5 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Cari blok..."
-              className="w-full bg-zinc-900 border border-zinc-800 rounded-xl pl-8 pr-3 py-1.5 text-xs text-zinc-300 placeholder-zinc-500 focus:outline-none focus:border-zinc-700"
+              className="w-full bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 rounded-xl pl-8 pr-3 py-1.5 text-xs text-slate-800 dark:text-zinc-300 placeholder-slate-400 dark:placeholder-zinc-500 focus:outline-none focus:border-slate-400 dark:focus:border-zinc-700"
             />
           </div>
         )}
@@ -135,13 +133,13 @@ export function BlockList() {
 
       {/* Sortable DnD Block List */}
       {blocks.length === 0 ? (
-        <div className="text-center py-12 px-6 rounded-2xl bg-zinc-900/50 border border-dashed border-zinc-800 space-y-3">
-          <div className="w-12 h-12 rounded-full bg-emerald-950/60 border border-emerald-500/30 flex items-center justify-center mx-auto text-emerald-400">
+        <div className="text-center py-12 px-6 rounded-3xl bg-white dark:bg-zinc-900/50 border border-dashed border-slate-200 dark:border-zinc-800 space-y-3 shadow-sm">
+          <div className="w-12 h-12 rounded-full bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-500/30 flex items-center justify-center mx-auto text-emerald-600 dark:text-emerald-400">
             <Plus className="w-6 h-6" />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-white">Belum Ada Blok</h4>
-            <p className="text-xs text-zinc-400 mt-1 max-w-xs mx-auto">
+            <h4 className="text-sm font-bold text-slate-900 dark:text-white">Belum Ada Blok</h4>
+            <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1 max-w-xs mx-auto">
               Mulai buat profil tim dengan menambahkan link portofolio, video showreel, atau aset download gratis.
             </p>
           </div>

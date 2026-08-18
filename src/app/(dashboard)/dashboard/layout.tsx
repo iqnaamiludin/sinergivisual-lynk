@@ -14,9 +14,9 @@ export default function DashboardLayout({
 
   if (!hydrated) {
     return (
-      <div className="min-h-screen bg-zinc-950 text-white flex flex-col items-center justify-center space-y-4">
+      <div className="min-h-screen bg-slate-50 dark:bg-[#0B0F17] text-slate-900 dark:text-slate-100 flex flex-col items-center justify-center space-y-4">
         <div className="w-10 h-10 border-4 border-emerald-500 border-t-transparent rounded-full animate-spin" />
-        <p className="text-xs text-zinc-400 font-mono">
+        <p className="text-xs text-slate-500 dark:text-zinc-400 font-mono">
           Memuat Sinergi Visual Lynk Dashboard...
         </p>
       </div>
@@ -24,7 +24,7 @@ export default function DashboardLayout({
   }
 
   return (
-    <div className="min-h-screen bg-[#070908] text-zinc-100 flex flex-col lg:flex-row selection:bg-emerald-500 selection:text-zinc-950">
+    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#0B0F17] dark:text-slate-100 flex flex-col lg:flex-row selection:bg-emerald-500 selection:text-white transition-colors duration-200">
       {/* Sidebar Navigation (Persistent on Desktop, Drawer on Mobile) */}
       <DashboardSidebar />
 

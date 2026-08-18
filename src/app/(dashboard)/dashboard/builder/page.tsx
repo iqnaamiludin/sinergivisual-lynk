@@ -17,29 +17,29 @@ export default function BuilderPage() {
   return (
     <div className="space-y-6 pb-12">
       {/* Sub-header & Tab Controls */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 rounded-2xl bg-zinc-900/90 border border-zinc-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-5 rounded-3xl bg-white dark:bg-zinc-900/90 border border-slate-200 dark:border-zinc-800 shadow-sm transition-colors duration-200">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-base sm:text-lg font-black text-white">
+            <h1 className="text-base sm:text-lg font-black text-slate-900 dark:text-white">
               My Lynk (Builder Workspace)
             </h1>
-            <span className="px-2 py-0.5 rounded-full bg-emerald-950 text-emerald-400 text-[10px] font-bold border border-emerald-500/30">
+            <span className="px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-400 text-[10px] font-bold border border-emerald-300 dark:border-emerald-500/30">
               Drag & Drop
             </span>
           </div>
-          <p className="text-xs text-zinc-400 mt-0.5">
+          <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
             Susun portofolio video, showreel, dan aset digital gratis secara visual
           </p>
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex items-center gap-1 p-1 rounded-xl bg-zinc-950 border border-zinc-800 self-start sm:self-auto">
+        <div className="flex items-center gap-1 p-1 rounded-2xl bg-slate-100 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 self-start sm:self-auto">
           <button
             onClick={() => setActiveTab("blocks")}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
               activeTab === "blocks"
                 ? "bg-emerald-500 text-zinc-950 shadow-sm"
-                : "text-zinc-400 hover:text-zinc-200"
+                : "text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-zinc-200"
             }`}
           >
             <Layers className="w-3.5 h-3.5" />
@@ -47,10 +47,10 @@ export default function BuilderPage() {
           </button>
           <button
             onClick={() => setActiveTab("theme")}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
               activeTab === "theme"
                 ? "bg-emerald-500 text-zinc-950 shadow-sm"
-                : "text-zinc-400 hover:text-zinc-200"
+                : "text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-zinc-200"
             }`}
           >
             <Palette className="w-3.5 h-3.5" />
@@ -58,10 +58,10 @@ export default function BuilderPage() {
           </button>
           <button
             onClick={() => setActiveTab("profile")}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-bold transition cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
               activeTab === "profile"
                 ? "bg-emerald-500 text-zinc-950 shadow-sm"
-                : "text-zinc-400 hover:text-zinc-200"
+                : "text-slate-600 hover:text-slate-900 dark:text-zinc-400 dark:hover:text-zinc-200"
             }`}
           >
             <User className="w-3.5 h-3.5" />

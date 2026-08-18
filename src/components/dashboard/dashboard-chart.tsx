@@ -62,28 +62,28 @@ export function DashboardChart() {
   const chartData = getData();
   const totalViews = chartData.reduce((sum, item) => sum + item.views, 0);
   const totalClicks = chartData.reduce((sum, item) => sum + item.clicks, 0);
-  const avgCtr = ((totalClicks / totalViews) * 100).toFixed(1);
+  const avgCtr = ((totalClicks / (totalViews || 1)) * 100).toFixed(1);
 
   return (
-    <div className="p-5 sm:p-6 rounded-2xl bg-zinc-900/90 border border-zinc-800 space-y-6">
+    <div className="p-5 sm:p-6 rounded-3xl bg-white dark:bg-zinc-900/90 border border-slate-200 dark:border-zinc-800 shadow-sm space-y-6 transition-colors duration-200">
       {/* Chart Header with Metrics & Date Filter */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h3 className="text-base font-bold text-white">
+            <h3 className="text-base font-bold text-slate-900 dark:text-white">
               Total Views & Clicks
             </h3>
-            <span className="px-2 py-0.5 rounded-md bg-emerald-950/80 border border-emerald-500/30 text-[10px] font-bold text-emerald-400">
+            <span className="px-2 py-0.5 rounded-md bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-300 dark:border-emerald-500/30 text-[10px] font-bold text-emerald-700 dark:text-emerald-400">
               CTR: {avgCtr}%
             </span>
           </div>
-          <p className="text-xs text-zinc-400 mt-0.5">
+          <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
             Statistik kunjungan halaman bio dan total interaksi klik aset video
           </p>
         </div>
 
         {/* Date Filter Buttons */}
-        <div className="flex items-center p-1 rounded-xl bg-zinc-950 border border-zinc-800 self-start sm:self-auto">
+        <div className="flex items-center p-1 rounded-xl bg-slate-100 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800 self-start sm:self-auto">
           {[
             { id: "7d", label: "7 Hari" },
             { id: "30d", label: "30 Hari" },
@@ -95,8 +95,8 @@ export function DashboardChart() {
               onClick={() => setTimeRange(tab.id as any)}
               className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition cursor-pointer ${
                 timeRange === tab.id
-                  ? "bg-zinc-800 text-emerald-400 font-bold shadow-sm"
-                  : "text-zinc-500 hover:text-zinc-300"
+                  ? "bg-white dark:bg-zinc-800 text-emerald-600 dark:text-emerald-400 font-bold shadow-sm"
+                  : "text-slate-500 hover:text-slate-900 dark:text-zinc-500 dark:hover:text-zinc-300"
               }`}
             >
               {tab.label}
@@ -107,29 +107,29 @@ export function DashboardChart() {
 
       {/* Legend & Stats Quick Counters */}
       <div className="grid grid-cols-2 gap-4 max-w-sm">
-        <div className="p-3 rounded-xl bg-zinc-950 border border-zinc-800/80 flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-emerald-950/60 border border-emerald-500/30 text-emerald-400">
+        <div className="p-3 rounded-2xl bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800/80 flex items-center gap-3">
+          <div className="p-2 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-300 dark:border-emerald-500/30 text-emerald-600 dark:text-emerald-400">
             <Eye className="w-4 h-4" />
           </div>
           <div>
-            <span className="text-[10px] text-zinc-500 font-semibold block">
+            <span className="text-[10px] text-slate-500 dark:text-zinc-500 font-semibold block">
               Total Views
             </span>
-            <span className="text-sm font-extrabold text-white">
+            <span className="text-sm font-extrabold text-slate-900 dark:text-white">
               {totalViews.toLocaleString("id-ID")}
             </span>
           </div>
         </div>
 
-        <div className="p-3 rounded-xl bg-zinc-950 border border-zinc-800/80 flex items-center gap-3">
-          <div className="p-2 rounded-lg bg-indigo-950/60 border border-indigo-500/30 text-indigo-400">
+        <div className="p-3 rounded-2xl bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-800/80 flex items-center gap-3">
+          <div className="p-2 rounded-xl bg-indigo-100 dark:bg-indigo-950/60 border border-indigo-300 dark:border-indigo-500/30 text-indigo-600 dark:text-indigo-400">
             <MousePointerClick className="w-4 h-4" />
           </div>
           <div>
-            <span className="text-[10px] text-zinc-500 font-semibold block">
+            <span className="text-[10px] text-slate-500 dark:text-zinc-500 font-semibold block">
               Total Clicks
             </span>
-            <span className="text-sm font-extrabold text-white">
+            <span className="text-sm font-extrabold text-slate-900 dark:text-white">
               {totalClicks.toLocaleString("id-ID")}
             </span>
           </div>
@@ -153,16 +153,16 @@ export function DashboardChart() {
                 <stop offset="95%" stopColor="#6366f1" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
+            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" className="dark:stroke-zinc-800" vertical={false} />
             <XAxis
               dataKey="date"
-              stroke="#71717a"
+              stroke="#94a3b8"
               fontSize={11}
               tickLine={false}
               axisLine={false}
             />
             <YAxis
-              stroke="#71717a"
+              stroke="#94a3b8"
               fontSize={11}
               tickLine={false}
               axisLine={false}
@@ -170,12 +170,12 @@ export function DashboardChart() {
             />
             <Tooltip
               contentStyle={{
-                backgroundColor: "#18181b",
-                borderColor: "#3f3f46",
+                backgroundColor: "rgba(15, 23, 42, 0.95)",
+                borderColor: "#334155",
                 borderRadius: "0.75rem",
                 color: "#ffffff",
                 fontSize: "12px",
-                boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.5)",
+                boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.3)",
               }}
               itemStyle={{ color: "#ffffff" }}
             />

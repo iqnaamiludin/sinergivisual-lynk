@@ -25,6 +25,7 @@ export interface BlockItem {
   title: string;
   url: string;
   subtitle?: string;
+  badgeText?: string;
   active: boolean;
   thumbnail?: string;
   icon?: string;

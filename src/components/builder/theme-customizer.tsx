@@ -77,10 +77,10 @@ export function ThemeCustomizer() {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-emerald-400" />
-            <h3 className="text-sm font-bold text-white">Preset Tema Visual</h3>
+            <Sparkles className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+            <h3 className="text-sm font-bold text-slate-900 dark:text-white">Preset Tema Visual</h3>
           </div>
-          <span className="text-zinc-500">Pilih 1-Klik</span>
+          <span className="text-slate-400 dark:text-zinc-500">Pilih 1-Klik</span>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -93,8 +93,8 @@ export function ThemeCustomizer() {
                 onClick={() => applyPreset(preset.presetId)}
                 className={`group relative text-left p-3 rounded-2xl border transition-all duration-200 overflow-hidden cursor-pointer ${
                   isSelected
-                    ? "border-emerald-500 ring-2 ring-emerald-500/30 shadow-lg shadow-emerald-500/10"
-                    : "border-zinc-800 hover:border-zinc-700 bg-zinc-900/80"
+                    ? "border-emerald-500 ring-2 ring-emerald-500/30 shadow-lg shadow-emerald-500/10 bg-white dark:bg-zinc-900"
+                    : "border-slate-200 dark:border-zinc-800 hover:border-slate-300 dark:hover:border-zinc-700 bg-white dark:bg-zinc-900/80"
                 }`}
               >
                 {/* Visual Swatch Preview Box */}
@@ -106,7 +106,7 @@ export function ThemeCustomizer() {
                 >
                   <div className="flex items-center justify-between">
                     <span
-                      className="w-3 h-3 rounded-full"
+                      className="w-3 h-3 rounded-full shadow-sm"
                       style={{ backgroundColor: preset.accentColor }}
                     />
                     {isSelected && (
@@ -116,7 +116,7 @@ export function ThemeCustomizer() {
                     )}
                   </div>
                   <div
-                    className="h-3.5 w-full rounded text-[9px] font-bold flex items-center justify-center"
+                    className="h-3.5 w-full rounded text-[9px] font-bold flex items-center justify-center shadow-sm"
                     style={{
                       backgroundColor: preset.buttonBg,
                       color: preset.buttonTextColor,
@@ -126,7 +126,7 @@ export function ThemeCustomizer() {
                   </div>
                 </div>
 
-                <p className="text-xs font-bold text-zinc-200 truncate">
+                <p className="text-xs font-bold text-slate-800 dark:text-zinc-200 truncate">
                   {preset.name}
                 </p>
               </button>
@@ -136,10 +136,10 @@ export function ThemeCustomizer() {
       </div>
 
       {/* 2. BACKGROUND STYLING & PATTERN */}
-      <div className="space-y-4 pt-2 border-t border-zinc-800">
+      <div className="space-y-4 pt-2 border-t border-slate-200 dark:border-zinc-800">
         <div className="flex items-center gap-2">
-          <Layers className="w-4 h-4 text-emerald-400" />
-          <h3 className="text-sm font-bold text-white">Latar Belakang & Pola (Background)</h3>
+          <Layers className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white">Latar Belakang & Pola (Background)</h3>
         </div>
 
         {/* BG Type Tabs */}
@@ -155,8 +155,8 @@ export function ThemeCustomizer() {
               onClick={() => updateTheme({ bgType: bg.id as any })}
               className={`py-2 px-2.5 rounded-xl font-bold border transition text-center cursor-pointer ${
                 theme.bgType === bg.id
-                  ? "bg-emerald-950/80 border-emerald-500 text-emerald-400"
-                  : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white"
+                  ? "bg-emerald-50 text-emerald-700 border-emerald-300 dark:bg-emerald-950/80 dark:border-emerald-500 dark:text-emerald-400"
+                  : "bg-white dark:bg-zinc-900 border-slate-200 dark:border-zinc-800 text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
               {bg.label}
@@ -166,7 +166,7 @@ export function ThemeCustomizer() {
 
         {/* Pattern Overlay */}
         <div>
-          <label className="block font-semibold text-zinc-300 mb-1.5">
+          <label className="block font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">
             Pola Latar (Subtle Texture Pattern):
           </label>
           <div className="grid grid-cols-3 gap-2">
@@ -181,8 +181,8 @@ export function ThemeCustomizer() {
                 onClick={() => updateTheme({ bgPattern: pat.id as any })}
                 className={`py-2 px-2 rounded-xl font-semibold border transition cursor-pointer ${
                   (theme.bgPattern || "none") === pat.id
-                    ? "bg-zinc-800 border-emerald-500 text-white"
-                    : "bg-zinc-900 border-zinc-800 text-zinc-500 hover:text-zinc-300"
+                    ? "bg-slate-100 dark:bg-zinc-800 border-emerald-500 text-slate-900 dark:text-white font-bold"
+                    : "bg-white dark:bg-zinc-900 border-slate-200 dark:border-zinc-800 text-slate-500 dark:text-zinc-500 hover:text-slate-800 dark:hover:text-zinc-300"
                 }`}
               >
                 {pat.label}
@@ -193,10 +193,10 @@ export function ThemeCustomizer() {
       </div>
 
       {/* 3. CARD FRAME CONTAINER STYLE (DESKTOP & MOBILE) */}
-      <div className="space-y-4 pt-2 border-t border-zinc-800">
+      <div className="space-y-4 pt-2 border-t border-slate-200 dark:border-zinc-800">
         <div className="flex items-center gap-2">
-          <Maximize2 className="w-4 h-4 text-emerald-400" />
-          <h3 className="text-sm font-bold text-white">Frame Kontainer Halaman Publik</h3>
+          <Maximize2 className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white">Frame Kontainer Halaman Publik</h3>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -205,29 +205,29 @@ export function ThemeCustomizer() {
               key={cf.id}
               type="button"
               onClick={() => updateTheme({ cardFrameStyle: cf.id })}
-              className={`p-3 rounded-xl border text-left transition flex flex-col justify-between gap-1.5 cursor-pointer ${
+              className={`p-3 rounded-2xl border text-left transition flex flex-col justify-between gap-1.5 cursor-pointer ${
                 (theme.cardFrameStyle || "glass-card") === cf.id
-                  ? "bg-zinc-800 border-emerald-500 text-white shadow-md shadow-emerald-500/10"
-                  : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white"
+                  ? "bg-slate-100 dark:bg-zinc-800 border-emerald-500 text-slate-900 dark:text-white shadow-md shadow-emerald-500/10"
+                  : "bg-white dark:bg-zinc-900 border-slate-200 dark:border-zinc-800 text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="font-bold text-white">{cf.label}</span>
+                <span className="font-bold text-slate-900 dark:text-white">{cf.label}</span>
                 {(theme.cardFrameStyle || "glass-card") === cf.id && (
-                  <Check className="w-3.5 h-3.5 text-emerald-400" />
+                  <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                 )}
               </div>
-              <p className="text-[11px] text-zinc-500 leading-snug">{cf.desc}</p>
+              <p className="text-[11px] text-slate-500 dark:text-zinc-500 leading-snug">{cf.desc}</p>
             </button>
           ))}
         </div>
       </div>
 
       {/* 4. BUTTON STYLE & HOVER EFFECTS */}
-      <div className="space-y-4 pt-2 border-t border-zinc-800">
+      <div className="space-y-4 pt-2 border-t border-slate-200 dark:border-zinc-800">
         <div className="flex items-center gap-2">
-          <Palette className="w-4 h-4 text-emerald-400" />
-          <h3 className="text-sm font-bold text-white">Bentuk & Animasi Tombol</h3>
+          <Palette className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white">Bentuk & Animasi Tombol</h3>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
@@ -236,10 +236,10 @@ export function ThemeCustomizer() {
               key={btn.id}
               type="button"
               onClick={() => updateTheme({ buttonStyle: btn.id })}
-              className={`p-3 rounded-xl border text-left transition flex flex-col justify-between gap-2.5 cursor-pointer ${
+              className={`p-3 rounded-2xl border text-left transition flex flex-col justify-between gap-2.5 cursor-pointer ${
                 theme.buttonStyle === btn.id
-                  ? "bg-zinc-800 border-emerald-500 text-white"
-                  : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white"
+                  ? "bg-slate-100 dark:bg-zinc-800 border-emerald-500 text-slate-900 dark:text-white"
+                  : "bg-white dark:bg-zinc-900 border-slate-200 dark:border-zinc-800 text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
               <div className={`w-full py-1.5 px-2 text-[10px] text-center font-bold ${btn.preview}`}>
@@ -252,7 +252,7 @@ export function ThemeCustomizer() {
 
         {/* Hover Animation Selector */}
         <div className="pt-2">
-          <label className="block font-semibold text-zinc-300 mb-1.5">
+          <label className="block font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">
             Efek Interaktif Saat Kursor Hover:
           </label>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -261,14 +261,14 @@ export function ThemeCustomizer() {
                 key={h.id}
                 type="button"
                 onClick={() => updateTheme({ buttonHoverEffect: h.id })}
-                className={`p-2.5 rounded-xl border text-left transition cursor-pointer ${
+                className={`p-2.5 rounded-2xl border text-left transition cursor-pointer ${
                   (theme.buttonHoverEffect || "glow") === h.id
-                    ? "bg-emerald-950/80 border-emerald-500 text-emerald-400"
-                    : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-zinc-200"
+                    ? "bg-emerald-50 text-emerald-700 border-emerald-300 dark:bg-emerald-950/80 dark:border-emerald-500 dark:text-emerald-400"
+                    : "bg-white dark:bg-zinc-900 border-slate-200 dark:border-zinc-800 text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200"
                 }`}
               >
                 <p className="font-bold">{h.label}</p>
-                <p className="text-[10px] text-zinc-500 mt-0.5 line-clamp-1">{h.desc}</p>
+                <p className="text-[10px] text-slate-400 dark:text-zinc-500 mt-0.5 line-clamp-1">{h.desc}</p>
               </button>
             ))}
           </div>
@@ -276,15 +276,15 @@ export function ThemeCustomizer() {
       </div>
 
       {/* 5. AVATAR & SOCIAL ICONS STYLING */}
-      <div className="space-y-4 pt-2 border-t border-zinc-800">
+      <div className="space-y-4 pt-2 border-t border-slate-200 dark:border-zinc-800">
         <div className="flex items-center gap-2">
-          <User className="w-4 h-4 text-emerald-400" />
-          <h3 className="text-sm font-bold text-white">Gaya Avatar & Ikon Sosial</h3>
+          <User className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white">Gaya Avatar & Ikon Sosial</h3>
         </div>
 
         {/* Avatar Style */}
         <div>
-          <label className="block font-semibold text-zinc-300 mb-1.5">
+          <label className="block font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">
             Gaya Avatar Profil:
           </label>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -293,14 +293,14 @@ export function ThemeCustomizer() {
                 key={av.id}
                 type="button"
                 onClick={() => updateTheme({ avatarStyle: av.id })}
-                className={`p-2.5 rounded-xl border text-left transition cursor-pointer ${
+                className={`p-2.5 rounded-2xl border text-left transition cursor-pointer ${
                   (theme.avatarStyle || "gradient-ring") === av.id
-                    ? "bg-emerald-950/80 border-emerald-500 text-emerald-400"
-                    : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-zinc-200"
+                    ? "bg-emerald-50 text-emerald-700 border-emerald-300 dark:bg-emerald-950/80 dark:border-emerald-500 dark:text-emerald-400"
+                    : "bg-white dark:bg-zinc-900 border-slate-200 dark:border-zinc-800 text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200"
                 }`}
               >
                 <p className="font-bold">{av.label}</p>
-                <p className="text-[10px] text-zinc-500 mt-0.5 line-clamp-1">{av.desc}</p>
+                <p className="text-[10px] text-slate-400 dark:text-zinc-500 mt-0.5 line-clamp-1">{av.desc}</p>
               </button>
             ))}
           </div>
@@ -308,7 +308,7 @@ export function ThemeCustomizer() {
 
         {/* Social Icons Style */}
         <div>
-          <label className="block font-semibold text-zinc-300 mb-1.5">
+          <label className="block font-semibold text-slate-700 dark:text-zinc-300 mb-1.5">
             Gaya Ikon Media Sosial:
           </label>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
@@ -317,14 +317,14 @@ export function ThemeCustomizer() {
                 key={soc.id}
                 type="button"
                 onClick={() => updateTheme({ socialStyle: soc.id })}
-                className={`p-2.5 rounded-xl border text-left transition cursor-pointer ${
+                className={`p-2.5 rounded-2xl border text-left transition cursor-pointer ${
                   (theme.socialStyle || "circle-buttons") === soc.id
-                    ? "bg-emerald-950/80 border-emerald-500 text-emerald-400"
-                    : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-zinc-200"
+                    ? "bg-emerald-50 text-emerald-700 border-emerald-300 dark:bg-emerald-950/80 dark:border-emerald-500 dark:text-emerald-400"
+                    : "bg-white dark:bg-zinc-900 border-slate-200 dark:border-zinc-800 text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-zinc-200"
                 }`}
               >
                 <p className="font-bold">{soc.label}</p>
-                <p className="text-[10px] text-zinc-500 mt-0.5 line-clamp-1">{soc.desc}</p>
+                <p className="text-[10px] text-slate-400 dark:text-zinc-500 mt-0.5 line-clamp-1">{soc.desc}</p>
               </button>
             ))}
           </div>
@@ -332,16 +332,16 @@ export function ThemeCustomizer() {
       </div>
 
       {/* 6. COLOR PICKERS */}
-      <div className="space-y-4 pt-2 border-t border-zinc-800">
+      <div className="space-y-4 pt-2 border-t border-slate-200 dark:border-zinc-800">
         <div className="flex items-center gap-2">
-          <Sliders className="w-4 h-4 text-emerald-400" />
-          <h3 className="text-sm font-bold text-white">Kustom Warna Detail</h3>
+          <Sliders className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white">Kustom Warna Detail</h3>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {/* Button Background Color */}
-          <div className="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800 space-y-2">
-            <label className="block font-semibold text-zinc-300">
+          <div className="p-3.5 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 shadow-sm space-y-2">
+            <label className="block font-semibold text-slate-700 dark:text-zinc-300">
               Warna Tombol (Button Color):
             </label>
             <div className="flex items-center gap-3">
@@ -349,20 +349,20 @@ export function ThemeCustomizer() {
                 type="color"
                 value={theme.buttonBg.startsWith("#") ? theme.buttonBg : "#10b981"}
                 onChange={(e) => updateTheme({ buttonBg: e.target.value })}
-                className="w-10 h-10 rounded-lg cursor-pointer bg-transparent border-0"
+                className="w-10 h-10 rounded-xl cursor-pointer bg-transparent border-0"
               />
               <input
                 type="text"
                 value={theme.buttonBg}
                 onChange={(e) => updateTheme({ buttonBg: e.target.value })}
-                className="flex-1 bg-zinc-950 border border-zinc-700/80 rounded-lg px-3 py-1.5 text-white font-mono uppercase"
+                className="flex-1 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-700/80 rounded-xl px-3 py-1.5 text-slate-900 dark:text-white font-mono uppercase"
               />
             </div>
           </div>
 
           {/* Button Text Color */}
-          <div className="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800 space-y-2">
-            <label className="block font-semibold text-zinc-300">
+          <div className="p-3.5 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 shadow-sm space-y-2">
+            <label className="block font-semibold text-slate-700 dark:text-zinc-300">
               Warna Teks Tombol:
             </label>
             <div className="flex items-center gap-3">
@@ -370,20 +370,20 @@ export function ThemeCustomizer() {
                 type="color"
                 value={theme.buttonTextColor.startsWith("#") ? theme.buttonTextColor : "#000000"}
                 onChange={(e) => updateTheme({ buttonTextColor: e.target.value })}
-                className="w-10 h-10 rounded-lg cursor-pointer bg-transparent border-0"
+                className="w-10 h-10 rounded-xl cursor-pointer bg-transparent border-0"
               />
               <input
                 type="text"
                 value={theme.buttonTextColor}
                 onChange={(e) => updateTheme({ buttonTextColor: e.target.value })}
-                className="flex-1 bg-zinc-950 border border-zinc-700/80 rounded-lg px-3 py-1.5 text-white font-mono uppercase"
+                className="flex-1 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-700/80 rounded-xl px-3 py-1.5 text-slate-900 dark:text-white font-mono uppercase"
               />
             </div>
           </div>
 
           {/* Accent Color */}
-          <div className="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800 space-y-2">
-            <label className="block font-semibold text-zinc-300">
+          <div className="p-3.5 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 shadow-sm space-y-2">
+            <label className="block font-semibold text-slate-700 dark:text-zinc-300">
               Warna Aksen Glow & Badge:
             </label>
             <div className="flex items-center gap-3">
@@ -391,20 +391,20 @@ export function ThemeCustomizer() {
                 type="color"
                 value={theme.accentColor.startsWith("#") ? theme.accentColor : "#10b981"}
                 onChange={(e) => updateTheme({ accentColor: e.target.value })}
-                className="w-10 h-10 rounded-lg cursor-pointer bg-transparent border-0"
+                className="w-10 h-10 rounded-xl cursor-pointer bg-transparent border-0"
               />
               <input
                 type="text"
                 value={theme.accentColor}
                 onChange={(e) => updateTheme({ accentColor: e.target.value })}
-                className="flex-1 bg-zinc-950 border border-zinc-700/80 rounded-lg px-3 py-1.5 text-white font-mono uppercase"
+                className="flex-1 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-700/80 rounded-xl px-3 py-1.5 text-slate-900 dark:text-white font-mono uppercase"
               />
             </div>
           </div>
 
           {/* Base Background Color */}
-          <div className="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800 space-y-2">
-            <label className="block font-semibold text-zinc-300">
+          <div className="p-3.5 rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800 shadow-sm space-y-2">
+            <label className="block font-semibold text-slate-700 dark:text-zinc-300">
               Warna Dasar Latar (Background Base):
             </label>
             <div className="flex items-center gap-3">
@@ -417,13 +417,13 @@ export function ThemeCustomizer() {
                     bgGradient: `radial-gradient(ellipse at top, ${e.target.value} 0%, #050807 70%, #000000 100%)`,
                   })
                 }
-                className="w-10 h-10 rounded-lg cursor-pointer bg-transparent border-0"
+                className="w-10 h-10 rounded-xl cursor-pointer bg-transparent border-0"
               />
               <input
                 type="text"
                 value={theme.bgColor}
                 onChange={(e) => updateTheme({ bgColor: e.target.value })}
-                className="flex-1 bg-zinc-950 border border-zinc-700/80 rounded-lg px-3 py-1.5 text-white font-mono uppercase"
+                className="flex-1 bg-slate-50 dark:bg-zinc-950 border border-slate-200 dark:border-zinc-700/80 rounded-xl px-3 py-1.5 text-slate-900 dark:text-white font-mono uppercase"
               />
             </div>
           </div>
@@ -431,10 +431,10 @@ export function ThemeCustomizer() {
       </div>
 
       {/* 7. TYPOGRAPHY & FONT */}
-      <div className="space-y-4 pt-2 border-t border-zinc-800">
+      <div className="space-y-4 pt-2 border-t border-slate-200 dark:border-zinc-800">
         <div className="flex items-center gap-2">
-          <Type className="w-4 h-4 text-emerald-400" />
-          <h3 className="text-sm font-bold text-white">Font & Tipografi</h3>
+          <Type className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
+          <h3 className="text-sm font-bold text-slate-900 dark:text-white">Font & Tipografi</h3>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -443,19 +443,19 @@ export function ThemeCustomizer() {
               key={f.id}
               type="button"
               onClick={() => updateTheme({ fontFamily: f.id })}
-              className={`p-3.5 rounded-xl border text-left transition cursor-pointer ${
+              className={`p-3.5 rounded-2xl border text-left transition cursor-pointer ${
                 theme.fontFamily === f.id
-                  ? "bg-zinc-800 border-emerald-500 text-white"
-                  : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white"
+                  ? "bg-slate-100 dark:bg-zinc-800 border-emerald-500 text-slate-900 dark:text-white shadow-sm"
+                  : "bg-white dark:bg-zinc-900 border-slate-200 dark:border-zinc-800 text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white"
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="text-sm font-bold text-white">{f.label}</span>
+                <span className="text-sm font-bold text-slate-900 dark:text-white">{f.label}</span>
                 {theme.fontFamily === f.id && (
-                  <Check className="w-4 h-4 text-emerald-400" />
+                  <Check className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                 )}
               </div>
-              <p className="text-[11px] text-zinc-500 mt-1">{f.desc}</p>
+              <p className="text-[11px] text-slate-400 dark:text-zinc-500 mt-1">{f.desc}</p>
             </button>
           ))}
         </div>
