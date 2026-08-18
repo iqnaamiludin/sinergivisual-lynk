@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { useBuilderStore } from "@/stores/use-builder-store";
 import { ShareModal } from "@/components/public/share-modal";
+import { BrandLogo } from "@/components/brand-logo";
+import { ThemeToggle } from "@/components/theme-toggle";
 import {
   Sparkles,
   ExternalLink,
@@ -30,11 +31,7 @@ export function BuilderNavbar() {
           {/* Left Brand & Logo */}
           <div className="flex items-center gap-3">
             <a href="/" className="flex items-center gap-2.5 group">
-              <Image
-                src="/images/logo.png"
-                alt="Sinergi Visual Lynk"
-                width={140}
-                height={36}
+              <BrandLogo
                 className="h-8 w-auto object-contain group-hover:scale-105 transition duration-200"
                 priority
               />
@@ -74,7 +71,7 @@ export function BuilderNavbar() {
               }`}
             >
               <User className="w-3.5 h-3.5" />
-              <span>Profil Bio</span>
+              <span>Profil Studio</span>
             </button>
           </nav>
 
@@ -86,6 +83,9 @@ export function BuilderNavbar() {
               <span>Auto-saved</span>
             </div>
 
+            {/* Theme Toggle */}
+            <ThemeToggle />
+
             {/* Reset Defaults button */}
             <button
               onClick={() => {
@@ -93,7 +93,7 @@ export function BuilderNavbar() {
                   resetToDefault();
                 }
               }}
-              className="hidden sm:inline-flex p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-400 hover:text-white transition"
+              className="hidden sm:inline-flex p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-400 hover:text-white transition cursor-pointer"
               title="Reset ke Default"
             >
               <RotateCcw className="w-4 h-4" />
@@ -102,7 +102,7 @@ export function BuilderNavbar() {
             {/* Share Modal button */}
             <button
               onClick={() => setIsShareModalOpen(true)}
-              className="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-white transition"
+              className="p-2 rounded-xl bg-zinc-900 hover:bg-zinc-800 border border-zinc-800 text-zinc-300 hover:text-white transition cursor-pointer"
               title="Bagikan Link / QR Code"
             >
               <Share2 className="w-4 h-4" />

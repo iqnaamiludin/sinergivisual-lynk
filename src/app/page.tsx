@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { BrandLogo } from "@/components/brand-logo";
+import { ThemeToggle } from "@/components/theme-toggle";
 import {
   Sparkles,
   ArrowRight,
@@ -299,20 +300,16 @@ export default function LandingPage() {
   ];
 
   return (
-    <div className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-[#00C170] selection:text-white flex flex-col justify-between overflow-x-hidden">
+    <div className="min-h-screen bg-white dark:bg-[#0A0E17] text-zinc-900 dark:text-zinc-100 font-sans selection:bg-[#00C170] selection:text-white flex flex-col justify-between overflow-x-hidden transition-colors duration-200">
       {/* ========================================================================= */}
       {/* A. HEADER & NAVIGATION BAR */}
       {/* ========================================================================= */}
-      <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-zinc-100 transition">
+      <header className="sticky top-0 z-50 w-full bg-white/90 dark:bg-[#0A0E17]/90 backdrop-blur-md border-b border-zinc-100 dark:border-zinc-800/80 transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-          {/* Logo Brand */}
+          {/* Logo Brand (Dynamic Theme Switcher) */}
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative flex items-center">
-              <Image
-                src="/images/logo.png"
-                alt="Sinergi Visual Lynk"
-                width={150}
-                height={40}
+              <BrandLogo
                 className="h-9 sm:h-10 w-auto object-contain group-hover:scale-105 transition duration-200"
                 priority
               />
@@ -320,29 +317,32 @@ export default function LandingPage() {
           </Link>
 
           {/* Navigation Links (Desktop) */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-zinc-600">
-            <a href="#features" className="hover:text-[#00C170] transition">
+          <nav className="hidden md:flex items-center gap-8 text-sm font-semibold text-zinc-600 dark:text-zinc-300">
+            <a href="#features" className="hover:text-[#00C170] dark:hover:text-[#00C170] transition">
               Layanan
             </a>
-            <a href="#creators" className="hover:text-[#00C170] transition">
+            <a href="#creators" className="hover:text-[#00C170] dark:hover:text-[#00C170] transition">
               Kreator
             </a>
-            <a href="#workflow" className="hover:text-[#00C170] transition">
+            <a href="#workflow" className="hover:text-[#00C170] dark:hover:text-[#00C170] transition">
               Fitur
             </a>
-            <a href="#testimonials" className="hover:text-[#00C170] transition">
+            <a href="#testimonials" className="hover:text-[#00C170] dark:hover:text-[#00C170] transition">
               Testimoni
             </a>
-            <a href="#faq" className="hover:text-[#00C170] transition">
+            <a href="#faq" className="hover:text-[#00C170] dark:hover:text-[#00C170] transition">
               FAQ
             </a>
           </nav>
 
           {/* Right Action Buttons */}
           <div className="flex items-center gap-3">
+            {/* Theme Toggle Button */}
+            <ThemeToggle />
+
             <Link
-              href="/dashboard"
-              className="px-4 py-2 text-sm font-bold text-zinc-700 hover:text-[#00C170] transition"
+              href="/login"
+              className="px-4 py-2 text-sm font-bold text-zinc-700 dark:text-zinc-300 hover:text-[#00C170] dark:hover:text-[#00C170] transition"
             >
               Masuk
             </Link>
@@ -360,9 +360,9 @@ export default function LandingPage() {
       {/* ========================================================================= */}
       {/* B. HERO SECTION */}
       {/* ========================================================================= */}
-      <section className="relative pt-12 pb-20 lg:pt-20 lg:pb-32 bg-gradient-to-b from-[#EBF7F4]/70 via-white to-white overflow-hidden">
+      <section className="relative pt-12 pb-20 lg:pt-20 lg:pb-32 bg-gradient-to-b from-[#EBF7F4]/70 dark:from-emerald-950/20 via-white dark:via-[#0A0E17] to-white dark:to-[#0A0E17] overflow-hidden transition-colors duration-200">
         {/* Subtle Background Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#00C170]/10 blur-[140px] rounded-full pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-[#00C170]/10 dark:bg-[#00C170]/15 blur-[140px] rounded-full pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
@@ -375,15 +375,15 @@ export default function LandingPage() {
               </div>
 
               {/* Headline */}
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-zinc-950 tracking-tight leading-[1.12]">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-zinc-950 dark:text-white tracking-tight leading-[1.12]">
                 Mendukung Ekonomi{" "}
-                <span className="bg-gradient-to-r from-[#00C170] via-emerald-500 to-teal-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-[#00C170] via-emerald-500 to-teal-500 bg-clip-text text-transparent">
                   Kreator Indonesia.
                 </span>
               </h1>
 
               {/* Subheadline */}
-              <p className="text-base sm:text-lg text-zinc-600 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
+              <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 max-w-xl mx-auto lg:mx-0 leading-relaxed font-normal">
                 Buat halaman web instan untuk menjual karya & keahlianmu. Bagikan aset digital, kelas online, konsultasi, dan terima pembayaran langsung dari satu link bio.
               </p>
 
@@ -392,15 +392,15 @@ export default function LandingPage() {
                 onSubmit={handleCreateUsername}
                 className="max-w-md mx-auto lg:mx-0 pt-2"
               >
-                <div className="p-2 bg-white rounded-full border-2 border-[#00C170]/40 shadow-xl shadow-[#00C170]/10 flex items-center justify-between focus-within:border-[#00C170] transition">
-                  <div className="flex items-center pl-4 font-mono font-bold text-sm text-zinc-400">
+                <div className="p-2 bg-white dark:bg-zinc-900 rounded-full border-2 border-[#00C170]/40 shadow-xl shadow-[#00C170]/10 flex items-center justify-between focus-within:border-[#00C170] transition">
+                  <div className="flex items-center pl-4 font-mono font-bold text-sm text-zinc-400 dark:text-zinc-500">
                     <span>lynk.id/</span>
                     <input
                       type="text"
                       value={usernameInput}
                       onChange={(e) => setUsernameInput(e.target.value)}
                       placeholder="username-kamu"
-                      className="w-full bg-transparent text-zinc-900 placeholder-zinc-400 focus:outline-none pl-1 font-bold text-sm"
+                      className="w-full bg-transparent text-zinc-900 dark:text-white placeholder-zinc-400 dark:placeholder-zinc-500 focus:outline-none pl-1 font-bold text-sm"
                     />
                   </div>
 
@@ -411,26 +411,26 @@ export default function LandingPage() {
                     Buat Sekarang
                   </button>
                 </div>
-                <p className="text-[11px] text-zinc-500 mt-2 text-center lg:text-left pl-2">
+                <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-2 text-center lg:text-left pl-2">
                   ✨ Gratis selamanya &bull; Tanpa perlu kartu kredit &bull; Setup 2 menit
                 </p>
               </form>
 
               {/* Social proof metric */}
-              <div className="pt-6 flex items-center justify-center lg:justify-start gap-8 border-t border-zinc-200/80">
+              <div className="pt-6 flex items-center justify-center lg:justify-start gap-8 border-t border-zinc-200/80 dark:border-zinc-800">
                 <div>
-                  <p className="text-2xl font-black text-zinc-950">50.000+</p>
-                  <p className="text-xs text-zinc-500 font-medium">Kreator Terdaftar</p>
+                  <p className="text-2xl font-black text-zinc-950 dark:text-white">50.000+</p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">Kreator Terdaftar</p>
                 </div>
-                <div className="w-px h-8 bg-zinc-200" />
+                <div className="w-px h-8 bg-zinc-200 dark:bg-zinc-800" />
                 <div>
                   <p className="text-2xl font-black text-[#00C170]">Rp 25M+</p>
-                  <p className="text-xs text-zinc-500 font-medium">Dana Terdistribusi</p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">Dana Terdistribusi</p>
                 </div>
-                <div className="w-px h-8 bg-zinc-200" />
+                <div className="w-px h-8 bg-zinc-200 dark:bg-zinc-800" />
                 <div>
-                  <p className="text-2xl font-black text-zinc-950">4.9/5</p>
-                  <p className="text-xs text-zinc-500 font-medium">Kepuasan Pengguna</p>
+                  <p className="text-2xl font-black text-zinc-950 dark:text-white">4.9/5</p>
+                  <p className="text-xs text-zinc-500 dark:text-zinc-400 font-medium">Kepuasan Pengguna</p>
                 </div>
               </div>
             </div>
@@ -537,16 +537,16 @@ export default function LandingPage() {
       {/* ========================================================================= */}
       {/* C. SECTION: KREATOR TERBAIK MENGGUNAKAN SINERGI VISUAL LYNK */}
       {/* ========================================================================= */}
-      <section id="creators" className="py-20 bg-zinc-50 border-y border-zinc-200/80">
+      <section id="creators" className="py-20 bg-zinc-50 dark:bg-[#070A10] border-y border-zinc-200/80 dark:border-zinc-800/80 transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-3 mb-12">
             <span className="px-3.5 py-1 rounded-full bg-[#00C170]/10 text-[#00C170] text-xs font-black uppercase tracking-wider">
               KREATOR TERBAIK
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-zinc-950 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-zinc-950 dark:text-white tracking-tight">
               Lihat bagaimana para kreator terbaik membangun bisnis mereka
             </h2>
-            <p className="text-sm text-zinc-600 leading-relaxed">
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
               Bergabunglah bersama ribuan video editor, desainer, edukator finansial, dan creative studio terkemuka di Indonesia.
             </p>
           </div>
@@ -556,12 +556,12 @@ export default function LandingPage() {
             {creatorShowcases.map((c, i) => (
               <div
                 key={i}
-                className="p-6 rounded-3xl bg-white border border-zinc-200/80 hover:border-[#00C170] shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between space-y-5"
+                className="p-6 rounded-3xl bg-white dark:bg-zinc-900/80 border border-zinc-200/80 dark:border-zinc-800 hover:border-[#00C170] shadow-sm hover:shadow-xl hover:-translate-y-1 transition duration-300 flex flex-col justify-between space-y-5"
               >
                 <div>
                   <div className="flex items-start justify-between">
                     <div className="flex items-center gap-3.5">
-                      <div className="w-14 h-14 rounded-2xl overflow-hidden border-2 border-zinc-100 shadow-sm">
+                      <div className="w-14 h-14 rounded-2xl overflow-hidden border-2 border-zinc-100 dark:border-zinc-800 shadow-sm">
                         <img
                           src={c.avatar}
                           alt={c.name}
@@ -570,31 +570,31 @@ export default function LandingPage() {
                       </div>
                       <div>
                         <div className="flex items-center gap-1">
-                          <h3 className="font-bold text-base text-zinc-950">{c.name}</h3>
+                          <h3 className="font-bold text-base text-zinc-950 dark:text-white">{c.name}</h3>
                           <CheckCircle2 className="w-4 h-4 fill-[#00C170] text-white" />
                         </div>
                         <p className="text-xs font-mono font-bold text-[#00C170]">{c.handle}</p>
-                        <p className="text-[11px] text-zinc-500 mt-0.5">{c.role}</p>
+                        <p className="text-[11px] text-zinc-500 dark:text-zinc-400 mt-0.5">{c.role}</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Featured Item Box */}
-                  <div className="mt-5 p-3.5 rounded-2xl bg-[#EBF7F4]/60 border border-[#00C170]/20">
+                  <div className="mt-5 p-3.5 rounded-2xl bg-[#EBF7F4]/60 dark:bg-emerald-950/20 border border-[#00C170]/20">
                     <div className="flex items-center justify-between text-[11px]">
-                      <span className="font-bold text-zinc-500 uppercase">Produk Unggulan:</span>
+                      <span className="font-bold text-zinc-500 dark:text-zinc-400 uppercase">Produk Unggulan:</span>
                       <span className="px-2 py-0.5 rounded-md bg-[#00C170] text-white font-extrabold text-[9px] uppercase">
                         {c.tag}
                       </span>
                     </div>
-                    <p className="text-xs font-black text-zinc-900 mt-1">
+                    <p className="text-xs font-black text-zinc-900 dark:text-white mt-1">
                       {c.featuredItem}
                     </p>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-4 border-t border-zinc-100 text-xs">
-                  <span className="font-bold text-zinc-500">{c.followers}</span>
+                <div className="flex items-center justify-between pt-4 border-t border-zinc-100 dark:border-zinc-800 text-xs">
+                  <span className="font-bold text-zinc-500 dark:text-zinc-400">{c.followers}</span>
                   <Link
                     href={`/sinergivisual`}
                     className="font-extrabold text-[#00C170] hover:text-[#00a862] flex items-center gap-1 transition"
@@ -612,16 +612,16 @@ export default function LandingPage() {
       {/* ========================================================================= */}
       {/* D. SECTION: BUKAN SEKADAR LINK-IN-BIO BIASA (INTERACTIVE TABS) */}
       {/* ========================================================================= */}
-      <section id="features" className="py-24 bg-white">
+      <section id="features" className="py-24 bg-white dark:bg-[#0A0E17] transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-3 mb-14">
             <span className="px-3.5 py-1 rounded-full bg-[#00C170]/10 text-[#00C170] text-xs font-black uppercase tracking-wider">
               FITUR MONETISASI LENGKAP
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-zinc-950 tracking-tight leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-zinc-950 dark:text-white tracking-tight leading-tight">
               Bukan sekadar link-in-bio biasa.
             </h2>
-            <p className="text-base text-zinc-600 leading-relaxed">
+            <p className="text-base text-zinc-600 dark:text-zinc-300 leading-relaxed">
               Sinergi Visual Lynk menangani seluruh alur kerja Anda dari awal distribusi hingga menghasilkan cuan otomatis.
             </p>
           </div>
@@ -638,7 +638,7 @@ export default function LandingPage() {
                   className={`flex items-center gap-2 px-5 py-3 rounded-full text-xs font-extrabold whitespace-nowrap transition cursor-pointer ${
                     isActive
                       ? "bg-[#00C170] text-white shadow-lg shadow-[#00C170]/25 scale-105"
-                      : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200"
+                      : "bg-zinc-100 dark:bg-zinc-900 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-200 dark:hover:bg-zinc-800"
                   }`}
                 >
                   <Icon className="w-4 h-4" />
@@ -649,7 +649,7 @@ export default function LandingPage() {
           </div>
 
           {/* Active Tab Showcase Box */}
-          <div className="p-8 lg:p-12 rounded-[36px] bg-gradient-to-br from-[#EBF7F4]/80 via-white to-[#EBF7F4]/40 border border-[#00C170]/20 shadow-xl">
+          <div className="p-8 lg:p-12 rounded-[36px] bg-gradient-to-br from-[#EBF7F4]/80 dark:from-zinc-900/90 via-white dark:via-zinc-900 to-[#EBF7F4]/40 dark:to-zinc-950 border border-[#00C170]/20 dark:border-zinc-800 shadow-xl">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               {/* Left Detail (7 Cols) */}
               <div className="lg:col-span-7 space-y-6">
@@ -657,17 +657,17 @@ export default function LandingPage() {
                   {React.createElement(workflowTabs[activeTab].icon, { className: "w-6 h-6" })}
                 </div>
 
-                <h3 className="text-2xl sm:text-3xl font-black text-zinc-950 leading-tight">
+                <h3 className="text-2xl sm:text-3xl font-black text-zinc-950 dark:text-white leading-tight">
                   {workflowTabs[activeTab].headline}
                 </h3>
 
-                <p className="text-sm sm:text-base text-zinc-600 leading-relaxed font-normal">
+                <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed font-normal">
                   {workflowTabs[activeTab].description}
                 </p>
 
                 <div className="space-y-3 pt-2">
                   {workflowTabs[activeTab].benefits.map((b, i) => (
-                    <div key={i} className="flex items-center gap-3 text-xs sm:text-sm font-semibold text-zinc-800">
+                    <div key={i} className="flex items-center gap-3 text-xs sm:text-sm font-semibold text-zinc-800 dark:text-zinc-200">
                       <div className="w-5 h-5 rounded-full bg-[#00C170]/20 text-[#00C170] flex items-center justify-center shrink-0">
                         <CheckCircle2 className="w-3.5 h-3.5 fill-current text-white" />
                       </div>
@@ -679,10 +679,10 @@ export default function LandingPage() {
                 <div className="pt-4">
                   <Link
                     href="/dashboard/builder"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-zinc-950 hover:bg-zinc-800 text-white text-xs font-bold uppercase tracking-wider shadow-lg hover:scale-105 active:scale-95 transition"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full bg-zinc-950 dark:bg-emerald-500 hover:bg-zinc-800 dark:hover:bg-emerald-400 text-white dark:text-zinc-950 text-xs font-bold uppercase tracking-wider shadow-lg hover:scale-105 active:scale-95 transition"
                   >
                     <span>Mulai Pasang di Bio Anda</span>
-                    <ArrowRight className="w-4 h-4 text-[#00C170]" />
+                    <ArrowRight className="w-4 h-4 text-[#00C170] dark:text-zinc-950" />
                   </Link>
                 </div>
               </div>
@@ -775,16 +775,16 @@ export default function LandingPage() {
       {/* ========================================================================= */}
       {/* F. SECTION: APA KATA MEREKA TENTANG KAMI (TESTIMONIALS) */}
       {/* ========================================================================= */}
-      <section id="testimonials" className="py-24 bg-white">
+      <section id="testimonials" className="py-24 bg-white dark:bg-[#0A0E17] transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto space-y-3 mb-16">
             <span className="px-3.5 py-1 rounded-full bg-[#00C170]/10 text-[#00C170] text-xs font-black uppercase tracking-wider">
               TESTIMONI KREATOR
             </span>
-            <h2 className="text-3xl sm:text-4xl font-black text-zinc-950 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-black text-zinc-950 dark:text-white tracking-tight">
               Apa Kata Mereka
             </h2>
-            <p className="text-sm sm:text-base text-zinc-600 leading-relaxed">
+            <p className="text-sm sm:text-base text-zinc-600 dark:text-zinc-300 leading-relaxed">
               Tidak perlu lagi membayar 5+ aplikasi berbeda. Sinergi Visual Lynk menghadirkan semuanya dalam satu tempat.
             </p>
           </div>
@@ -794,7 +794,7 @@ export default function LandingPage() {
             {testimonials.map((t, i) => (
               <div
                 key={i}
-                className="p-6 rounded-3xl bg-zinc-50 border border-zinc-200/80 hover:border-[#00C170]/60 hover:shadow-lg transition duration-200 flex flex-col justify-between space-y-4"
+                className="p-6 rounded-3xl bg-zinc-50 dark:bg-zinc-900/70 border border-zinc-200/80 dark:border-zinc-800 hover:border-[#00C170]/60 hover:shadow-lg transition duration-200 flex flex-col justify-between space-y-4"
               >
                 <div className="space-y-3">
                   <div className="flex items-center gap-1 text-amber-400">
@@ -802,20 +802,20 @@ export default function LandingPage() {
                       <Star key={idx} className="w-4 h-4 fill-current" />
                     ))}
                   </div>
-                  <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed italic font-normal">
+                  <p className="text-xs sm:text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed italic font-normal">
                     &ldquo;{t.content}&rdquo;
                   </p>
                 </div>
 
-                <div className="flex items-center gap-3 pt-3 border-t border-zinc-200">
+                <div className="flex items-center gap-3 pt-3 border-t border-zinc-200 dark:border-zinc-800">
                   <img
                     src={t.avatar}
                     alt={t.name}
-                    className="w-10 h-10 rounded-full object-cover border border-zinc-300"
+                    className="w-10 h-10 rounded-full object-cover border border-zinc-300 dark:border-zinc-700"
                   />
                   <div>
-                    <h4 className="font-bold text-xs text-zinc-950">{t.name}</h4>
-                    <p className="text-[11px] text-zinc-500">{t.role}</p>
+                    <h4 className="font-bold text-xs text-zinc-950 dark:text-white">{t.name}</h4>
+                    <p className="text-[11px] text-zinc-500 dark:text-zinc-400">{t.role}</p>
                   </div>
                 </div>
               </div>
@@ -827,13 +827,13 @@ export default function LandingPage() {
       {/* ========================================================================= */}
       {/* G. SECTION: 6 FITUR UTAMA & CTA BANNER */}
       {/* ========================================================================= */}
-      <section className="py-20 bg-gradient-to-b from-[#EBF7F4]/60 to-white">
+      <section className="py-20 bg-gradient-to-b from-[#EBF7F4]/60 dark:from-emerald-950/20 to-white dark:to-[#0A0E17] transition-colors duration-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
           <div className="text-center max-w-2xl mx-auto space-y-3">
-            <h2 className="text-3xl font-black text-zinc-950 tracking-tight">
+            <h2 className="text-3xl font-black text-zinc-950 dark:text-white tracking-tight">
               Bagaimana Kreator Menggunakan Platform Ini
             </h2>
-            <p className="text-sm text-zinc-600">
+            <p className="text-sm text-zinc-600 dark:text-zinc-400">
               Solusi all-in-one yang dirancang khusus untuk memenuhi semua kebutuhan kreator modern.
             </p>
           </div>
@@ -849,13 +849,13 @@ export default function LandingPage() {
             ].map((f, i) => (
               <div
                 key={i}
-                className="p-5 rounded-2xl bg-white border border-[#00C170]/30 shadow-sm flex flex-col justify-center items-center space-y-1.5"
+                className="p-5 rounded-2xl bg-white dark:bg-zinc-900 border border-[#00C170]/30 dark:border-zinc-800 shadow-sm flex flex-col justify-center items-center space-y-1.5"
               >
                 <div className="w-8 h-8 rounded-full bg-[#00C170]/10 text-[#00C170] flex items-center justify-center font-bold text-xs">
                   ✓
                 </div>
-                <h4 className="text-xs font-black text-zinc-950">{f.label}</h4>
-                <p className="text-[10px] text-zinc-500">{f.desc}</p>
+                <h4 className="text-xs font-black text-zinc-950 dark:text-white">{f.label}</h4>
+                <p className="text-[10px] text-zinc-500 dark:text-zinc-400">{f.desc}</p>
               </div>
             ))}
           </div>
@@ -871,7 +871,7 @@ export default function LandingPage() {
             <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
                 href="/dashboard/builder"
-                className="w-full sm:w-auto px-8 py-4 rounded-full bg-zinc-950 hover:bg-zinc-900 text-white font-extrabold text-xs tracking-wider uppercase shadow-xl hover:scale-105 active:scale-95 transition"
+                className="w-full sm:w-auto px-8 py-4 rounded-full bg-zinc-950 hover:bg-zinc-900 text-white font-extrabold text-xs tracking-wider uppercase shadow-xl hover:scale-105 active:scale-95 transition cursor-pointer"
               >
                 DAFTAR SEKARANG GRATIS!
               </Link>
@@ -889,13 +889,13 @@ export default function LandingPage() {
       {/* ========================================================================= */}
       {/* FAQ SECTION */}
       {/* ========================================================================= */}
-      <section id="faq" className="py-20 bg-white border-t border-zinc-100">
+      <section id="faq" className="py-20 bg-white dark:bg-[#0A0E17] border-t border-zinc-100 dark:border-zinc-800 transition-colors duration-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
           <div className="text-center space-y-3">
             <span className="px-3.5 py-1 rounded-full bg-[#00C170]/10 text-[#00C170] text-xs font-black uppercase tracking-wider">
               FAQ
             </span>
-            <h2 className="text-3xl font-black text-zinc-950 tracking-tight">
+            <h2 className="text-3xl font-black text-zinc-950 dark:text-white tracking-tight">
               Pertanyaan yang Sering Diajukan
             </h2>
           </div>
@@ -904,11 +904,11 @@ export default function LandingPage() {
             {faqs.map((faq, idx) => (
               <div
                 key={idx}
-                className="rounded-2xl border border-zinc-200 overflow-hidden transition"
+                className="rounded-2xl border border-zinc-200 dark:border-zinc-800 overflow-hidden transition"
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                  className="w-full p-5 text-left font-bold text-sm text-zinc-900 flex items-center justify-between gap-4 hover:bg-zinc-50 transition cursor-pointer"
+                  className="w-full p-5 text-left font-bold text-sm text-zinc-900 dark:text-zinc-100 flex items-center justify-between gap-4 hover:bg-zinc-50 dark:hover:bg-zinc-900/60 transition cursor-pointer"
                 >
                   <span>{faq.q}</span>
                   <ChevronDown
@@ -918,7 +918,7 @@ export default function LandingPage() {
                   />
                 </button>
                 {openFaq === idx && (
-                  <div className="p-5 pt-0 text-xs sm:text-sm text-zinc-600 leading-relaxed border-t border-zinc-100 bg-[#EBF7F4]/30">
+                  <div className="p-5 pt-0 text-xs sm:text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed border-t border-zinc-100 dark:border-zinc-800 bg-[#EBF7F4]/30 dark:bg-emerald-950/10">
                     {faq.a}
                   </div>
                 )}
@@ -936,11 +936,8 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="space-y-3 md:col-span-2">
               <div className="flex items-center gap-2">
-                <Image
-                  src="/images/logo.png"
-                  alt="Sinergi Visual Lynk"
-                  width={140}
-                  height={36}
+                <BrandLogo
+                  forceTheme="dark"
                   className="h-8 w-auto object-contain brightness-110"
                 />
               </div>

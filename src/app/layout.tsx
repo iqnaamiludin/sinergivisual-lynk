@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const roboto = Roboto({
   weight: ["300", "400", "500", "700", "900"],
@@ -24,9 +25,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" className={`${roboto.variable} h-full antialiased scroll-smooth`}>
-      <body className="min-h-full flex flex-col font-sans selection:bg-[#00C170] selection:text-zinc-950">
-        {children}
+    <html
+      lang="id"
+      suppressHydrationWarning
+      className={`${roboto.variable} h-full antialiased scroll-smooth`}
+    >
+      <body className="min-h-full flex flex-col font-sans selection:bg-[#00C170] selection:text-white bg-white dark:bg-[#0A0E17] text-zinc-900 dark:text-zinc-100 transition-colors duration-200">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem={false}
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

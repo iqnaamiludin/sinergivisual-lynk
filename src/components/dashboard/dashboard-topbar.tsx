@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useBuilderStore } from "@/stores/use-builder-store";
 import { ShareModal } from "@/components/public/share-modal";
+import { ThemeToggle } from "@/components/theme-toggle";
 import {
   ExternalLink,
   Share2,
@@ -151,6 +152,9 @@ export function DashboardTopbar() {
             <span>PRO Studio</span>
           </div>
 
+          {/* Theme Toggle (Dark/Light Switcher) */}
+          <ThemeToggle />
+
           {/* Logout Button */}
           <button
             onClick={() => {
@@ -159,7 +163,7 @@ export function DashboardTopbar() {
                 window.location.href = "/login";
               }
             }}
-            className="p-2 rounded-xl bg-zinc-900 hover:bg-rose-950/40 border border-zinc-800 hover:border-rose-500/30 text-zinc-400 hover:text-rose-400 transition"
+            className="p-2 rounded-xl bg-zinc-900 hover:bg-rose-950/40 border border-zinc-800 hover:border-rose-500/30 text-zinc-400 hover:text-rose-400 transition cursor-pointer"
             title="Keluar Akun (Logout)"
           >
             <LogOut className="w-4 h-4" />

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { BrandLogo } from "@/components/brand-logo";
 import { usePathname } from "next/navigation";
 import { useBuilderStore } from "@/stores/use-builder-store";
 import {
@@ -83,11 +83,7 @@ export function DashboardSidebar() {
         {/* Brand Logo */}
         <div className="p-5 border-b border-zinc-900 flex items-center justify-between">
           <Link href="/dashboard" className="flex items-center gap-3 group">
-            <Image
-              src="/images/logo.png"
-              alt="Sinergi Visual Lynk"
-              width={140}
-              height={36}
+            <BrandLogo
               className="h-8 w-auto object-contain group-hover:scale-105 transition duration-200"
               priority
             />
@@ -260,11 +256,7 @@ export function DashboardSidebar() {
           <Menu className="w-5 h-5" />
         </button>
 
-        <Image
-          src="/images/logo.png"
-          alt="Sinergi Visual Lynk"
-          width={120}
-          height={30}
+        <BrandLogo
           className="h-7 w-auto object-contain"
           priority
         />
